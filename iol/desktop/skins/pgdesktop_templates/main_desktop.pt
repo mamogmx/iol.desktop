@@ -1,0 +1,31 @@
+<div metal:define-macro="portlet" >
+    <div id="search-frm" metal:use-macro="here/cruscotto_resources/macros/search_portlet_abstract">
+        <metal:left metal:fill-slot="cruscotto_css">
+            <span metal:use-macro="here/cruscotto_resources/macros/main_css"></span>
+        </metal:left>
+        <metal:js metal:fill-slot="cruscotto_js">
+            <span metal:use-macro="here/cruscotto_resources/macros/main_js"></span>
+        </metal:js>
+        <metal:left metal:fill-slot="vertical_search">
+            <span metal:use-macro="here/cruscotto_resources/macros/stati_wf_iol"></span>
+        </metal:left>
+        <metal:upper metal:fill-slot="horizontal_search">
+            <span metal:use-macro="here/cruscotto_resources/macros/search_frm"></span>
+        </metal:upper>
+    </div>
+</div>
+
+<div metal:define-macro="cruscotto-utenti" >
+    <div id="search-frm" metal:use-macro="here/cruscotto_resources/macros/search_portlet_abstract">
+        <metal:left metal:fill-slot="cruscotto_css">
+            <span metal:use-macro="here/cruscotto_resources/macros/main_css"></span>
+        </metal:left>
+        <metal:js metal:fill-slot="cruscotto_js">
+            <span metal:use-macro="here/cruscotto_resources/macros/main_js"></span>
+        </metal:js>
+
+        <metal:upper metal:fill-slot="horizontal_search">
+            <span metal:use-macro="here/cruscotto_resources/macros/search_frm"></span>
+        </metal:upper>
+    </div>
+</div>

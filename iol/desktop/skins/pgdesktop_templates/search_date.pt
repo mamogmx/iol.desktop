@@ -1,0 +1,25 @@
+<label class="control-label" tal:content="title"/>
+<div class="row-fluid">
+    <div class="span4">
+        <select class="bootstrap-search" tal:attributes="name string:${name}_op;id string:${name}_op" data-plugin="remove-on-cancel">
+            <option value=""></option>
+            <option value="eq">Uguale a</option>
+            <option value="gt">Dopo il</option>
+            <option value="lt">Prima del</option>
+            <option value="btw">Compreso tra</option>
+        </select>
+    </div>
+    <div class="span4" tal:attributes="id string:${name}_span1">
+        <div class="input-append">
+            <input type="text" class="bootstrap-search" tal:attributes="name string:${name};id string:${name}_1" data-plugin="datepicker"/>
+            <span tal:attributes="id string:btn_${name}_1" class="add-on"><i class="icon-calendar"></i></span>
+        </div>
+    </div>
+    <div class="span4 invisible" tal:attributes="id string:${name}_span2">
+        <div class="input-append">
+            <input type="text" class="bootstrap-search" tal:attributes="name string:${name};id string:${name}_2" data-plugin="datepicker"/>
+            <span tal:attributes="id string:btn_${name}_2" class="add-on"><i class="icon-calendar"></i></span>
+        </div>
+    </div>
+    <input type="hidden" tal:attributes="name string:${name}_searchtype;id string:${name}_searchtype" value="date"/>
+</div>

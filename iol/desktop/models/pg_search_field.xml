@@ -1,0 +1,36 @@
+<?xml version="1.0" ?>
+<model xmlns:security="http://namespaces.plone.org/supermodel/security" xmlns:form="http://namespaces.plone.org/supermodel/form" xmlns:marshal="http://namespaces.plone.org/supermodel/marshal" xmlns="http://namespaces.plone.org/supermodel/schema">
+  <schema>
+    <field name="field_name" type="zope.schema.Text">
+      <description>Name of table field </description>
+      <required>True</required>
+      <title>Field Name</title>
+    </field>
+    <field name="subfield_name" type="zope.schema.Text">
+      <description>Name of json object in the field (If the field is a json type)</description>
+      <required>False</required>
+      <title>Sub Field Name</title>
+    </field>
+    <field name="field_type" type="zope.schema.Choice">
+        <description>Search Field Type</description>
+      <title>Field Type</title>
+      <values>
+        <element>search_text</element>
+        <element>search_number</element>
+        <element>search_date</element>
+        <element>search_list</element>
+        <element>search_check</element>
+      </values>
+    </field>
+    <field name="search_val" type="zope.schema.Text">
+      <description>It must be a list</description>
+      <required>False</required>
+      <title>Values</title>
+    </field>
+    <field name="search_opt" type="zope.schema.Text">
+      <description>It Must be a dictionary</description>
+      <required>False</required>
+      <title>Options</title>
+    </field>
+  </schema>
+</model>

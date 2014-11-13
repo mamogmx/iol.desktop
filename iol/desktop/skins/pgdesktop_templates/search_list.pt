@@ -1,0 +1,13 @@
+<div class="row-fluid">
+    <div class="span12">
+        <label class="control-label" tal:content="title"/>
+        <select tal:attributes="name string:${name};id string:${name};" data-plugin="dynamic-search">
+            <tal:loop tal:repeat="el values">
+                <option tal:attributes="value el/value"  tal:content="el/label">Labels</option>
+                <span />
+            </tal:loop>   
+        </select>
+        <input type="hidden" tal:attributes="name string:${name}_searchtype;id string:${name}_searchtype" value="text"/>
+        <input type="hidden" tal:attributes="name string:${name}_op;id string:${name}_op" value="eq"/>
+    </div>
+</div>

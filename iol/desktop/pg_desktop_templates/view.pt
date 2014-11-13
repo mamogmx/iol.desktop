@@ -1,0 +1,45 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      metal:use-macro="context/main_template/macros/master"
+      i18n:domain="iol.desktop">
+<body>
+
+<tal:comment tal:condition="nothing">
+    This is a sample view template. It will not be used for rendering the
+    content unless activated by creation of a view class with a matching name.
+</tal:comment>
+<metal:js metal:fill-slot="javascript_head_slot">
+	<script type="text/javascript" src="/++resource++iol.desktop/jquery.dataTables.min.js"></script>
+	<script type="text/javascript" src="/++resource++iol.desktop/bootstrap.min.js"></script>
+	<script type="text/javascript" src="/++resource++iol.desktop/search.pgdesktop.js"></script>
+</metal:js>
+<metal:css metal:fill-slot="style_slot">
+	<LINK media="screen" href="/++resource++iol.desktop/bootstrap.css" type="text/css" rel="stylesheet"/>
+	<LINK media="screen" href="/++resource++iol.desktop/bootstrap.dataTables.css" type="text/css" rel="stylesheet"/>
+</metal:css>
+<metal:main fill-slot="main">
+    <tal:main-macro metal:define-macro="main">
+
+        <div tal:replace="structure provider:plone.abovecontenttitle" />
+
+        <h1 class="documentFirstHeading" tal:content="context/title" />
+
+        <div tal:replace="structure provider:plone.belowcontenttitle" />
+
+        <p class="documentDescription" tal:content="context/description" />
+
+        <div tal:replace="structure provider:plone.abovecontentbody" />
+
+        <div tal:replace="structure context/page/raw" />
+
+        <div tal:replace="structure provider:plone.belowcontentbody" />
+
+    </tal:main-macro>
+</metal:main>
+
+</body>
+</html>
+
