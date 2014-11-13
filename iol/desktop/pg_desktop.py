@@ -17,7 +17,7 @@ from plone.namedfile.interfaces import IImageScaleTraversable
 from z3c.relationfield.schema import RelationList, RelationChoice
 from plone.formwidget.contenttree import ObjPathSourceBinder
 
-
+from plone import api
 from iol.desktop import MessageFactory as _
 from Products.CMFCore.utils import getToolByName
 import simplejson as json
@@ -48,29 +48,39 @@ class pg_desktop(Container):
     # Add your class methods and properties here
     def getFields(self):
         results = []
-        portal_catalog = getToolByName(self.context, 'portal_catalog')
+        portal_catalog = api.portal.get_tool(name='portal_catalog')
         current_path = "/".join(self.context.getPhysicalPath())
 
-        brains = portal_catalog(portal_type="pg_searcg_field",
+        brains = portal_catalog(portal_type="pg_search_field",
                                 path=current_path)
         for brain in brains:
             i = brain.getObject()
-            v = list()
-            opt = dict()
-            obj = dict(name=i.id,title=i.title,values=v,option=opt,template=i.fieldType)
+            try:
+                v = json.loads(i.search_val)
+            except:
+                v = list()
+            try:
+                opt = json.loads(i.search_opt)
+            except:
+                opt = dict()
+            if i.subfield_name:
+                name = "%s-->'%s'" %(i.field_name,i.subfield_name )
+            else:
+                name = i.field_name
+                
+            obj = dict(name=name,title=i.title,values=v,option=opt,template=i.fieldtype)
             results.append(obj)
         return results
         
     def getTemplate(self,id):
-        portal_catalog = getToolByName(self.context, 'portal_catalog')
         current_path = "/".join(self.context.getPhysicalPath())
-        brains = portal_catalog(id = id,portal_type="",path=current_path)
-        if len(brains)>0:
-            return brains[0].getObject()
+        template_id = ''
+        current_path
+        if id in current_path:
+            return current_path[id]
         else:
-            template_folder =  getToolByName(self.context, 'pg_desktop_template')
-            brains = portal_catalog(id = id,portal_type="",path="/".join(template_folder.getPhysicalPath()))
-            return brains[0].getObject()
+            template_folder =  api.portal.get_tool(name = 'pg_desktop_template')
+            return  template_folder[id]
             
     def displayLayout(self):
         fields = self.getFields()
@@ -78,7 +88,7 @@ class pg_desktop(Container):
         for field in fields:
             fieldblock = '<span class="desktopField">%s</span>' %field.name
             pt = self.getTemplate(field.template)
-            html = pt( )
+            html = pt.pt_render(extra_content = field)
             html_content.replace(fieldblock,html)
         return html_content
         
