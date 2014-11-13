@@ -1,12 +1,12 @@
 <?xml version="1.0" ?>
 <model xmlns:security="http://namespaces.plone.org/supermodel/security" xmlns:form="http://namespaces.plone.org/supermodel/form" xmlns:marshal="http://namespaces.plone.org/supermodel/marshal" xmlns="http://namespaces.plone.org/supermodel/schema">
   <schema>
-    <field name="field_name" type="zope.schema.Text">
+    <field name="field_name" type="zope.schema.TextLine">
       <description>Name of table field </description>
       <required>True</required>
       <title>Field Name</title>
     </field>
-    <field name="subfield_name" type="zope.schema.Text">
+    <field name="subfield_name" type="zope.schema.TextLine">
       <description>Name of json object in the field (If the field is a json type)</description>
       <required>False</required>
       <title>Sub Field Name</title>
