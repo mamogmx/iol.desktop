@@ -95,7 +95,7 @@ class pg_desktop(Container):
 
     def displayLayout(self):
         fields = self.getFields()
-        html_content = self.page.getRaw()
+        html_content = self.page.raw
         for field in fields:
             fieldblock = '<span class="desktopField">%s</span>' %field.name
             pt = self.getTemplate(field.template)
