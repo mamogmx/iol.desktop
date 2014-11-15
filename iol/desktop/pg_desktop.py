@@ -84,7 +84,7 @@ class pg_desktop(Container):
         return results
         
     def getTemplate(self,id):
-        current_path = "/".join(self.context.getPhysicalPath())
+        current_path = "/".join(self.getPhysicalPath())
         template_id = ''
 #       current_path
         if id in current_path:
