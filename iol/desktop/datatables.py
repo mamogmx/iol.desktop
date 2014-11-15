@@ -1,5 +1,7 @@
 __author__ = 'mamo'
 
+options = dict('gt' = gt, 'lt' = lt, 'in' = inlist, 'btw' = btw, 'contains' = contains, 'eq' = eq)
+
 def gt(key,v):
     return "(coalesce(%s,'')<>'' AND (%s)::%s > '%s'::%s)" %(key,key,v["type"],v["value"][0],v["type"])
 def lt(key,v):
@@ -13,7 +15,7 @@ def contains(key,v):
 def eq(key,v):
     return "(coalesce(%s,'')<>'' AND (%s)::%s = '%s'::%s)" %(key,key,v["type"],v["value"][0],v["type"])
 
-options = dict('gt' = gt, 'lt' = lt, 'in' = inlist, 'btw' = btw, 'contains' = contains, 'eq' = eq)
+
 
 class pgDataTables(object):
     def __init__(self,sk,tb,req):
