@@ -98,7 +98,7 @@ class pg_desktop(Container):
         fields = self.getFields()
         html_content = self.page.raw
         for field in fields:
-            fieldblock = '<span class="desktopField">%s</span>' %field['id']
+            fieldblock = '<span class="desktopField">%s</span>' %field['name']
             pt = self.getTemplate(field['template'])
             html = pt.pt_render(extra_context = field)
             html_content = html_content.replace(fieldblock,html)
