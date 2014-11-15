@@ -1,13 +1,6 @@
 __author__ = 'mamo'
 
-options = {
-    'gt' : greaterthen,
-    'lt' : lesserthen,
-    'in' : inlist,
-    'btw' : between,
-    'contains' : contains,
-    'eq' : equal,
-}
+
 
 def greaterthen(key,v):
     return "(coalesce(%s,'')<>'' AND (%s)::%s > '%s'::%s)" %(key,key,v["type"],v["value"][0],v["type"])
@@ -22,7 +15,14 @@ def contains(key,v):
 def equal(key,v):
     return "(coalesce(%s,'')<>'' AND (%s)::%s = '%s'::%s)" %(key,key,v["type"],v["value"][0],v["type"])
 
-
+options = {
+    'gt' : greaterthen,
+    'lt' : lesserthen,
+    'in' : inlist,
+    'btw' : between,
+    'contains' : contains,
+    'eq' : equal,
+}
 
 class pgDataTables(object):
     def __init__(self,sk,tb,req):
