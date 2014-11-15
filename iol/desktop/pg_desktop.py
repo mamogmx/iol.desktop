@@ -27,8 +27,6 @@ from iol.desktop.datatables import pgDataTables
 
 # Interface class; used to define content-type schema.
 
-class pg_desktop_validator(z3c.form.validator.SimpleFieldValidator):
-
 
 class Ipg_desktop(form.Schema, IImageScaleTraversable):
     """
