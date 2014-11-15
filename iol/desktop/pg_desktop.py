@@ -21,8 +21,14 @@ from plone import api
 from iol.desktop import MessageFactory as _
 from Products.CMFCore.utils import getToolByName
 import simplejson as json
+import sqlalchemy as sql
+
+from iol.desktop.datatables import pgDataTables
 
 # Interface class; used to define content-type schema.
+
+class pg_desktop_validator(z3c.form.validator.SimpleFieldValidator):
+
 
 class Ipg_desktop(form.Schema, IImageScaleTraversable):
     """
@@ -35,7 +41,13 @@ class Ipg_desktop(form.Schema, IImageScaleTraversable):
     # models/pg_desktop.xml to define the content type.
 
     form.model("models/pg_desktop.xml")
-
+    @zope.interface.invariant
+    def isValidConnectionString(desktop):
+        try:
+            engine = sql.create_engine(desktop.conn_string)
+            connection = engine.connect()
+        except:
+            raise zope.interface.Invalid("Not a valid connection string '%s'" %desktop.conn_string)
 
 # Custom content-type class; objects created for this content type will
 # be instances of this class. Use this class to add content-type specific
@@ -75,13 +87,13 @@ class pg_desktop(Container):
     def getTemplate(self,id):
         current_path = "/".join(self.context.getPhysicalPath())
         template_id = ''
-        current_path
+#       current_path
         if id in current_path:
             return current_path[id]
         else:
             template_folder =  api.portal.get_tool(name = 'pg_desktop_template')
             return  template_folder[id]
-            
+
     def displayLayout(self):
         fields = self.getFields()
         html_content = self.page.getRaw()
@@ -93,10 +105,28 @@ class pg_desktop(Container):
         return html_content
         
     def pgSearch(self):
-        
-        pass
+        request = self.REQUEST
+        result = {'aaData': list(), 'sEcho': request.get('sEcho',0), 'iTotalRecords': 0, 'iTotalDisplayRecords': 0, 'error':''}
+        engine = sql.create_engine(self.conn_string)
+        connection = engine.connect()
+        tb = self.db_table
+        sk = self.db_schema
+        dt = pgDataTables(sk,tb,request)
+        queryTot = dt.findTotal()
+        query = dt.findResult()
 
+        resTot = connection.execute(queryTot)
+        totali = int(resTot.fetchall()[0]["totali"])
+        result["iTotalRecords"] = totali
 
+        res = connection.execute(query)
+        for r in res:
+            data = json.loads(r)
+            data[id] = r["id"]
+            result['aaData'].append(data)
+        result['iTotalDisplayRecords'] = len(result['aaData'])
+        request.RESPONSE.headers['Content-Type'] = 'application/json'
+        return result
 # View class
 # The view will automatically use a similarly named template in
 # pg_desktop_templates.
