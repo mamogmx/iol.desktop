@@ -79,7 +79,7 @@ class pg_desktop(Container):
             else:
                 name = i.field_name
                 
-            obj = dict(name=i.id, title=i.title, values=v, option=opt, template=i.field_type, field_name=name)
+            obj = dict(name=i.id, title=i.title, values=v, option=opt, template=i.field_type, fieldname= i.field_name, subfieldname=i.subfield_name)
             results.append(obj)
         return results
         
