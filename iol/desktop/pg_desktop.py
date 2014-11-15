@@ -91,7 +91,7 @@ class pg_desktop(Container):
             return current_path[id]
         else:
             template_folder = getToolByName(self,'portal_skins')
-            template_folder = template_folder['pg_desktop_template']
+            template_folder = template_folder['pgdesktop_template']
             return  template_folder[id]
 
     def displayLayout(self):
