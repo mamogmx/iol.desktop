@@ -103,7 +103,7 @@ class pg_desktop(Container):
             fieldblock = '<span class="desktopField">%s</span>' %field['id']
             pt = self.getTemplate(field['template'])
             html = pt.pt_render(extra_context = field)
-            html_content.replace(fieldblock,html)
+            html_content = html_content.replace(fieldblock,html)
         return html_content
         
     def pgSearch(self):
