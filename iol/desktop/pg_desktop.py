@@ -90,7 +90,7 @@ class pg_desktop(Container):
         if id in current_path:
             return current_path[id]
         else:
-            template_folder =  api.portal.get_tool(name = 'pg_desktop_template')
+            template_folder = getToolByName(self,'pg_desktop_template')
             return  template_folder[id]
 
     def displayLayout(self):
