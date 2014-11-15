@@ -75,7 +75,7 @@ class pg_desktop(Container):
             except:
                 opt = dict()
             if i.subfield_name:
-                name = "%s-->'%s'" %(i.field_name,i.subfield_name )
+                name = "%s.%s" %(i.field_name,i.subfield_name )
             else:
                 name = i.field_name
                 
