@@ -75,11 +75,11 @@ class pg_desktop(Container):
             except:
                 opt = dict()
             if i.subfield_name:
-                name = "%s.%s" %(i.field_name,i.subfield_name )
+                name = "%s.%s" %(i.field_name, i.subfield_name )
             else:
                 name = i.field_name
                 
-            obj = dict(id=i.id,name=name,title=i.title,values=v,option=opt,template=i.field_type)
+            obj = dict(name=i.id, title=i.title, values=v, option=opt, template=i.field_type, field_name=name)
             results.append(obj)
         return results
         
