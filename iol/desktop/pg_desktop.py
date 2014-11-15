@@ -60,7 +60,7 @@ class pg_desktop(Container):
     def getFields(self):
         results = []
         portal_catalog = api.portal.get_tool(name='portal_catalog')
-        current_path = "/".join(self.context.getPhysicalPath())
+        current_path = "/".join(self.getPhysicalPath())
 
         brains = portal_catalog(portal_type="pg_search_field",
                                 path=current_path)
