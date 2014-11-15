@@ -79,7 +79,7 @@ class pg_desktop(Container):
             else:
                 name = i.field_name
                 
-            obj = dict(name=name,title=i.title,values=v,option=opt,template=i.field_type)
+            obj = dict(id=i.id,name=name,title=i.title,values=v,option=opt,template=i.field_type)
             results.append(obj)
         return results
         
@@ -98,7 +98,9 @@ class pg_desktop(Container):
         fields = self.getFields()
         html_content = self.page.raw
         for field in fields:
-            fieldblock = '<span class="desktopField">%s</span>' %field['name']
+            import pdb
+            pdb.set_trace()
+            fieldblock = '<span class="desktopField">%s</span>' %field['id']
             pt = self.getTemplate(field['template'])
             html = pt.pt_render(extra_context = field)
             html_content.replace(fieldblock,html)
