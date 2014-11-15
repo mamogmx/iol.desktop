@@ -1,18 +1,25 @@
 __author__ = 'mamo'
 
-options = dict('gt' = gt, 'lt' = lt, 'in' = inlist, 'btw' = btw, 'contains' = contains, 'eq' = eq)
+options = {
+    'gt' : greaterthen,
+    'lt' : lesserthen,
+    'in' : inlist,
+    'btw' : between,
+    'contains' : contains,
+    'eq' : equal,
+}
 
-def gt(key,v):
+def greaterthen(key,v):
     return "(coalesce(%s,'')<>'' AND (%s)::%s > '%s'::%s)" %(key,key,v["type"],v["value"][0],v["type"])
-def lt(key,v):
+def lesserthen(key,v):
     return "(coalesce(%s,'')<>'' AND (%s)::%s < '%s'::%s)" %(key,key,v["type"],v["value"][0],v["type"])
 def inlist(key,v):
     return "((%s) IN ('%s'))" %(key,"','".join(v['value']))
-def btw(key,v):
+def between(key,v):
     return "(coalesce(%s,'')<>'' AND ((%s)::%s < '%s'::%s) AND ((%s)::%s > '%s'::%s)" %(key,key,v['type'],v['value'][0],key,v['type'],v['value'][1])
 def contains(key,v):
     return "((%s) ILIKE '%%s%')" %(key,v['value'][0])
-def eq(key,v):
+def equal(key,v):
     return "(coalesce(%s,'')<>'' AND (%s)::%s = '%s'::%s)" %(key,key,v["type"],v["value"][0],v["type"])
 
 
