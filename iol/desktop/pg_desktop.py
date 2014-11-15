@@ -22,6 +22,7 @@ from iol.desktop import MessageFactory as _
 from Products.CMFCore.utils import getToolByName
 import simplejson as json
 import sqlalchemy as sql
+from zope import interface
 
 from iol.desktop.datatables import pgDataTables
 
@@ -45,7 +46,7 @@ class Ipg_desktop(form.Schema, IImageScaleTraversable):
             engine = sql.create_engine(desktop.conn_string)
             connection = engine.connect()
         except:
-            raise zope.interface.Invalid("Not a valid connection string '%s'" %desktop.conn_string)
+            raise interface.Invalid("Not a valid connection string '%s'" %desktop.conn_string)
 
 # Custom content-type class; objects created for this content type will
 # be instances of this class. Use this class to add content-type specific
