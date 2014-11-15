@@ -33,7 +33,7 @@
 
         <div tal:replace="structure provider:plone.abovecontentbody" />
 
-        <div tal:replace="structure context/page/raw" />
+        <div tal:replace="structure context/page/displayLayout" />
 
         <div tal:replace="structure provider:plone.belowcontentbody" />
 
