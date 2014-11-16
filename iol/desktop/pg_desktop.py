@@ -125,7 +125,7 @@ class pg_desktop(Container):
             data[id] = r["id"]
             result['aaData'].append(data)
         result['iTotalDisplayRecords'] = len(result['aaData'])
-        request.RESPONSE.headers['Content-Type'] = 'application/json'
+
         return result
 # View class
 # The view will automatically use a similarly named template in
@@ -146,3 +146,5 @@ class View(grok.View):
     grok.name('view')
 
     # Add view methods here
+    def pgsearch(self):
+        pass
