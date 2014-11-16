@@ -1,5 +1,5 @@
 from five import grok
-
+from AccessControl import ClassSecurityInfo
 from z3c.form import group, field
 from zope import schema
 from zope.interface import invariant, Invalid
@@ -55,7 +55,7 @@ class Ipg_desktop(form.Schema, IImageScaleTraversable):
 
 class pg_desktop(Container):
     grok.implements(Ipg_desktop)
-
+    security = ClassSecurityInfo()
     # Add your class methods and properties here
     def getFields(self):
         results = []
@@ -103,7 +103,7 @@ class pg_desktop(Container):
             html = pt.pt_render(extra_context = field)
             html_content = html_content.replace(fieldblock,html)
         return html_content
-        
+    security.declarePublic('pgSearch')
     def pgSearch(self):
         request = self.REQUEST
         result = {'aaData': list(), 'sEcho': request.get('sEcho',0), 'iTotalRecords': 0, 'iTotalDisplayRecords': 0, 'error':''}

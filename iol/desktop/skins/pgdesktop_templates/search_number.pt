@@ -9,10 +9,10 @@
         </select>
     </div>
     <div class="span4" tal:attributes="id string:${name}_span1">
-        <input type="text" class="bootstrap-search" tal:attributes="name string:${name};id string:${name}_1;data-name string: ${fieldname};data-subname string: ${subfieldname}"></input>
+        <input type="text" class="bootstrap-search" tal:attributes="name string:${name};id string:${name}_1;data-name string: ${fieldname};data-subname string: ${subfieldname}" />
     </div>
     <div class="span4 invisible" tal:attributes="id string:${name}_span2">
-        <input type="text" class="bootstrap-search" tal:attributes="name string:${name};id string:${name}_2;data-name string: ${fieldname};data-subname string: ${subfieldname}"></input>
+        <input type="text" class="bootstrap-search" tal:attributes="name string:${name};id string:${name}_2;data-name string: ${fieldname};data-subname string: ${subfieldname}" />
     </div>
     <input type="hidden" tal:attributes="name string:${name}_searchtype;id string:${name}_searchtype;value string:integer" />
 </div>
