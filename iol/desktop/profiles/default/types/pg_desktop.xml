@@ -51,4 +51,9 @@
     url_expr="string:${object_url}/edit" visible="True">
     <permission value="Modify portal content" />
   </action>
+  <action title="Search" action_id="pgSearch" category="object" condition_expr=""
+    description="" icon_expr="" link_target=""
+    url_expr="string:${object_url}/search" visible="True">
+    <permission value="View"/>
+  </action>
 </object>
