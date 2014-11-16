@@ -103,7 +103,7 @@ class pg_desktop(Container):
             html = pt.pt_render(extra_context = field)
             html_content = html_content.replace(fieldblock,html)
         return html_content
-    security.declarePublic('pgSearch')
+    @property
     def pgSearch(self):
         request = self.REQUEST
         result = {'aaData': list(), 'sEcho': request.get('sEcho',0), 'iTotalRecords': 0, 'iTotalDisplayRecords': 0, 'error':''}
