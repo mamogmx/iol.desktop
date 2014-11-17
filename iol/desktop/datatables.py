@@ -1,5 +1,3 @@
-__author__ = 'mamo'
-
 
 
 def greaterthen(key,v):

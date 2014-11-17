@@ -98,35 +98,14 @@ class pg_desktop(Container):
         fields = self.getFields()
         html_content = self.page.raw
         for field in fields:
+            import pdb
+            pdb.set_trace()
             fieldblock = '<span class="desktopField">%s</span>' %field['name']
             pt = self.getTemplate(field['template'])
             html = pt.pt_render(extra_context = field)
             html_content = html_content.replace(fieldblock,html)
         return html_content
-    @property
-    def pgSearch(self):
-        request = self.REQUEST
-        result = {'aaData': list(), 'sEcho': request.get('sEcho',0), 'iTotalRecords': 0, 'iTotalDisplayRecords': 0, 'error':''}
-        engine = sql.create_engine(self.conn_string)
-        connection = engine.connect()
-        tb = self.db_table
-        sk = self.db_schema
-        dt = pgDataTables(sk,tb,request)
-        queryTot = dt.findTotal()
-        query = dt.findResult()
 
-        resTot = connection.execute(queryTot)
-        totali = int(resTot.fetchall()[0]["totali"])
-        result["iTotalRecords"] = totali
-
-        res = connection.execute(query)
-        for r in res:
-            data = json.loads(r)
-            data[id] = r["id"]
-            result['aaData'].append(data)
-        result['iTotalDisplayRecords'] = len(result['aaData'])
-
-        return result
 # View class
 # The view will automatically use a similarly named template in
 # pg_desktop_templates.
