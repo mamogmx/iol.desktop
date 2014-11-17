@@ -35,7 +35,7 @@ class pgDataTables(object):
         if not filter:
             return 'true'
         flt = list()
-        for key,v in self.request['query'].keys():
+        for key,v in self.queryParams.keys():
             flt.append(options[v['op']](key,v))
         return (' %s ' %mode).join(flt)
 
