@@ -32,7 +32,7 @@ class pgDataTables(object):
         self.offset = req.get('iDisplayStart','0')
 
     def filter(self, mode = 'AND'):
-        if not filter:
+        if not self.queryParams:
             return 'true'
         flt = list()
         for key,v in self.queryParams.keys():
