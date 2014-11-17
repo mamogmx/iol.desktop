@@ -29,7 +29,7 @@ class pgsearch(BrowserView):
 
         res = connection.execute(query)
         for r in res:
-            data = json.loads(r)
+            data = json.loads(r['data'])
             data[id] = r["id"]
             result['aaData'].append(data)
         result['iTotalDisplayRecords'] = len(result['aaData'])

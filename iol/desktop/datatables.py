@@ -48,7 +48,7 @@ class pgDataTables(object):
         sFilter = self.filter()
         sLimit = self.limit()
         sOrder = self.order()
-        query = "SELECT data FROM %s.%s WHERE %s %s %s" %(self.schema,self.table,sFilter,sLimit,sOrder)
+        query = "SELECT * FROM %s.%s WHERE %s %s %s" %(self.schema,self.table,sFilter,sLimit,sOrder)
         return query
 
     def findTotal(self):
