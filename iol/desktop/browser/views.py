@@ -6,4 +6,5 @@ import simplejson as json
 
 class pgsearch(BrowserView):
     def __call__(self):
-        return json.dumps(dict(a))
+        self.REQUEST.RESPONSE.headers['Content-Type'] = 'application/json'
+        return json.dumps(dict(a=1))
