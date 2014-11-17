@@ -39,14 +39,14 @@ class pgDataTables(object):
             flt.append(options[v['op']](key,v))
         return (' %s ' %mode).join(flt)
 
-    def limit(self,lim,offset):
+    def limit(self):
         sLimit = "LIMIT %s" %self.lim
         return "%s OFFSET %s" %(sLimit,self.offset)
     def order(self):
         return ""
     def findResult(self):
         sFilter = self.filter()
-        sLimit = self.limit(self.limit,self.offset)
+        sLimit = self.limit()
         sOrder = self.order()
         query = "SELECT * FROM %s.%s WHERE %s %s %s" %(self.schema,self.table,sFilter,sLimit,sOrder)
         return query
