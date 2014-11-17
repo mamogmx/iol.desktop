@@ -38,5 +38,5 @@ class pgsearch(BrowserView):
 
     def __call__(self):
         res = self.search()
-        request.RESPONSE.headers['Content-Type'] = 'application/json'
+        self.request.RESPONSE.headers['Content-Type'] = 'application/json'
         return json.dumps(res)
