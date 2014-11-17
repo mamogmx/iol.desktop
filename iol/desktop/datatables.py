@@ -27,6 +27,9 @@ class pgDataTables(object):
         self.schema = sk
         self.table = tb
         self.request = req
+        self.queryParams = req.get('query',dict())
+        self.lim = req.get('iDisplayLength','-1')
+        self.offset = req.get('iDisplayStart','0')
 
     def filter(self, mode = 'AND'):
         if not filter:
@@ -37,25 +40,20 @@ class pgDataTables(object):
         return (' %s ' %mode).join(flt)
 
     def limit(self,lim,offset):
-        sLimit = ""
-        if lim != "-1":
-            sLimit = "LIMIT %s" %lim
-        if offset:
-            off = offset
-        else:
-            off = "0"
-        return "%s OFFSET %s" %(sLimit,off)
+        sLimit = "LIMIT %s" %self.lim
+        return "%s OFFSET %s" %(sLimit,self.offset)
     def order(self):
         return ""
     def findResult(self):
-        sFilter = self.filter(params['query'])
-        sLimit = self.limit(self.request['iDisplayLength'],self.request['iDisplayStart'])
+        sFilter = self.filter()
+        sLimit = self.limit(self.limit,self.offset)
         sOrder = self.order()
         query = "SELECT * FROM %s.%s WHERE %s %s %s" %(self.schema,self.table,sFilter,sLimit,sOrder)
         return query
 
     def findTotal(self):
-        sFilter = self.filter(params['query'])
+
+        sFilter = self.filter()
         query = "SELECT count(*) as totali FROM %s.%s WHERE %s" %(self.schema,self.table,sFilter)
         return query
 
