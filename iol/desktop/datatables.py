@@ -28,7 +28,7 @@ class pgDataTables(object):
         self.table = tb
         self.request = req
         self.queryParams = req.get('query',dict())
-        self.lim = req.get('iDisplayLength','-1')
+        self.lim = req.get('iDisplayLength','ALL')
         self.offset = req.get('iDisplayStart','0')
 
     def filter(self, mode = 'AND'):
