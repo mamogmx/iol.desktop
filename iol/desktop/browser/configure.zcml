@@ -1,0 +1,12 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    i18n_domain="iol.desktop">
+    <browser:page
+       name="pgsearch"
+       for="iol.desktop.pg_desktop.Ipg_desktop"
+       layer="..interfaces.IDesktopLayer"
+       class=".views.pgsearch"
+       permission="zope2.View"
+       />
+</configure>

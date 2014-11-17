@@ -146,5 +146,3 @@ class View(grok.View):
     grok.name('view')
 
     # Add view methods here
-    def pgsearch(self):
-        pass
