@@ -21,7 +21,7 @@
 	<LINK media="screen" href="/++resource++iol.desktop/bootstrap.dataTables.css" type="text/css" rel="stylesheet"/>
 </metal:css>
 <metal:main fill-slot="body">
-    <tal:main-macro metal:define-macro="main">
+    <tal:main-macro metal:define-macro="body">
 
         <div tal:replace="structure provider:plone.abovecontenttitle" />
 
