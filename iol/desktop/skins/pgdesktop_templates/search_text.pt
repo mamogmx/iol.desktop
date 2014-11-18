@@ -1,14 +1,14 @@
 <label class="control-label" tal:content="title"/>
 <div class="row-fluid">
     <div class="span4">
-        <select class="" tal:attributes="name string:${name}_op;id string:${name}_op" data-plugins="remove-on-cancel">
+        <select class="bootstrap-search" tal:attributes="name string:${name}_op;id string:${name}_op" data-plugins="remove-on-cancel">
             <option value=""></option>
             <option value="eq">Uguale a</option>
             <option value="contains">Contiene</option>
         </select>
     </div>
     <div class="span8" tal:attributes="id string:${name}_span1">
-        <input type="text"  class="bootstrap-search" tal:attributes="name string:${name};id string:${name}_1"/>
+        <input type="text"  class="bootstrap-search" tal:attributes="name string:${name};id string:${name}_1;data-name string:${fieldname};data-subname string:${subfieldname}"/>
     </div>
     <input type="hidden" tal:attributes="name string:${name}_searchtype;id string:${name}_searchtype" value="text"/>
 </div>

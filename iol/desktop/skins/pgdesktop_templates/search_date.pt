@@ -11,13 +11,13 @@
     </div>
     <div class="span4" tal:attributes="id string:${name}_span1">
         <div class="input-append">
-            <input type="text" class="bootstrap-search" tal:attributes="name string:${name};id string:${name}_1" data-plugin="datepicker"/>
+            <input type="text" class="bootstrap-search" tal:attributes="name string:${name};id string:${name}_1;data-name string:${fieldname};data-subname string:${subfieldname};" data-plugin="datepicker"/>
             <span tal:attributes="id string:btn_${name}_1" class="add-on"><i class="icon-calendar"></i></span>
         </div>
     </div>
     <div class="span4 invisible" tal:attributes="id string:${name}_span2">
         <div class="input-append">
-            <input type="text" class="bootstrap-search" tal:attributes="name string:${name};id string:${name}_2" data-plugin="datepicker"/>
+            <input type="text" class="bootstrap-search" tal:attributes="name string:${name};id string:${name}_2data-name string:${fieldname};data-subname string:${subfieldname};" data-plugin="datepicker"/>
             <span tal:attributes="id string:btn_${name}_2" class="add-on"><i class="icon-calendar"></i></span>
         </div>
     </div>
