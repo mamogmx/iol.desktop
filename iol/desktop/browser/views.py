@@ -29,6 +29,8 @@ class pgsearch(BrowserView):
 
         res = connection.execute(query)
         d = res.fetchall()
+        import pdb
+        pdb.set_trace()
         for r in d:
             data = json.loads(r['data'])
             data[id] = r["id"]
