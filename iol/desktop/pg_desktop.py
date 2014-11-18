@@ -98,8 +98,6 @@ class pg_desktop(Container):
         fields = self.getFields()
         html_content = self.page.raw
         for field in fields:
-            import pdb
-            pdb.set_trace()
             fieldblock = '<span class="desktopField">%s</span>' %field['name']
             pt = self.getTemplate(field['template'])
             html = pt.pt_render(extra_context = field)
