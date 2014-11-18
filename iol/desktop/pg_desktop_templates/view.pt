@@ -23,7 +23,7 @@
 <metal:main fill-slot="main">
     <tal:main-macro metal:define-macro="main">
 
-        <div tal:replace="structure provider:plone.abovecontenttitle" />
+        <!--<div tal:replace="structure provider:plone.abovecontenttitle" />
 
         <h1 class="documentFirstHeading" tal:content="context/title" />
 
@@ -31,11 +31,11 @@
 
         <p class="documentDescription" tal:content="context/description" />
 
-        <div tal:replace="structure provider:plone.abovecontentbody" />
+        <div tal:replace="structure provider:plone.abovecontentbody" />-->
 
         <div tal:replace="structure context/displayLayout" />
 
-        <div tal:replace="structure provider:plone.belowcontentbody" />
+        <!--<div tal:replace="structure provider:plone.belowcontentbody" />-->
 
     </tal:main-macro>
 </metal:main>
