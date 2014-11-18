@@ -28,7 +28,8 @@ class pgsearch(BrowserView):
         result["iTotalRecords"] = totali
 
         res = connection.execute(query)
-        for r in res:
+        d = res.fetchall()
+        for r in d:
             data = json.loads(r['data'])
             data[id] = r["id"]
             result['aaData'].append(data)
