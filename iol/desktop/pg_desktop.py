@@ -99,16 +99,28 @@ class pg_desktop(Container):
 
     def displayLayout(self, layout):
         def top_layout(obj):
-            return obj.top_slot.raw or ''
+            if obj.top_slot:
+                return obj.top_slot.raw
+            else:
+                return ''
 
         def bottom_layout(obj):
-            return obj.bottom_slot.raw or ''
+            if obj.bottom_slot:
+                return obj.bottom_slot.raw
+            else:
+                return ''
 
         def left_layout(obj):
-            return obj.left_slot.raw or ''
+            if obj.left_slot:
+                return obj.left_slot.raw
+            else:
+                return ''
 
         def right_layout(obj):
-            return obj.right_slot.raw or ''
+            if obj.right_slot:
+                return obj.right_slot.raw
+            else:
+                return ''
 
         option = {
             'top_slot': top_layout,

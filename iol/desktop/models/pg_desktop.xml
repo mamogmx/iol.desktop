@@ -35,12 +35,13 @@
 			<field name="conn_string" type="zope.schema.TextLine">
 				<description/>
 				<title>Connection String</title>
-				<required>False</required>
+
 			</field>
 			<field name="db_schema" type="zope.schema.TextLine">
 				<description/>
 				<default>public</default>
 				<title>Database Schema</title>
+
 			</field>
 			<field name="db_table" type="zope.schema.TextLine">
 				<description/>
