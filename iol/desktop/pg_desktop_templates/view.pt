@@ -50,7 +50,7 @@
                         <table id="resultTable"></table>
                     </div>
                     <script type="text/javascript"
-                        tal:define="jsSettings context.js_settings"
+                        tal:define="jsSettings context/js_settings"
                         tal:content="string:
                             jQuery('#resultTable').dataTable({
                                 bDeferRender: true,
