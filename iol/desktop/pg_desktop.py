@@ -111,15 +111,15 @@ class pg_desktop(Container):
             return obj.right_slot.raw or ''
 
         option = {
-            'top_slot': top_layout(self),
-            'left_slot': left_layout(self),
-            'bottom_slot': bottom_layout(self),
-            'right_slot': right_layout(self)
+            'top_slot': top_layout,
+            'left_slot': left_layout,
+            'bottom_slot': bottom_layout,
+            'right_slot': right_layout
         }
         fields = self.getFields()
         if not layout in ('top_slot', 'bottom_slot', 'left_slot', 'right_slot'):
             return ''
-        html_content = option[layout]
+        html_content = option[layout](self)
         if not html_content:
             return ''
         for fld in fields:
