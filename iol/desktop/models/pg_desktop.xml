@@ -13,18 +13,22 @@
              <field name="top_slot" type="plone.app.textfield.RichText">
 			    <description/>
 			    <title>Top Slot</title>
+                <required>False</required>
 		     </field>
              <field name="right_slot" type="plone.app.textfield.RichText">
 			    <description/>
 			    <title>Right Slot</title>
+                <required>False</required>
 		     </field>
              <field name="bottom_slot" type="plone.app.textfield.RichText">
 			    <description/>
 			    <title>Bottom Slot</title>
+                <required>False</required>
 		     </field>
              <field name="left_slot" type="plone.app.textfield.RichText">
 			    <description/>
 			    <title>Left Slot</title>
+                <required>False</required>
 		     </field>
         </fieldset>
         <fieldset name="db_settings" label="Database Settings" description="Database Settings (connection string,schema and table)">
