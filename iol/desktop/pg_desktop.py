@@ -74,34 +74,59 @@ class pg_desktop(Container):
                 opt = json.loads(i.search_opt)
             except:
                 opt = dict()
-            if i.subfield_name:
-                name = "%s.%s" %(i.field_name, i.subfield_name )
-            else:
-                name = i.field_name
+
                 
-            obj = dict(name=i.id, title=i.title, values=v, option=opt, template=i.field_type, fieldname= i.field_name, subfieldname=i.subfield_name)
+            obj = dict(
+                name=i.id,
+                title=i.title,
+                values=v,
+                option=opt,
+                template=i.field_type,
+                fieldname=i.field_name,
+                subfieldname=i.subfield_name
+            )
             results.append(obj)
         return results
         
     def getTemplate(self,id):
         current_path = "/".join(self.getPhysicalPath())
-        template_id = ''
-#       current_path
         if id in current_path:
             return current_path[id]
         else:
             template_folder = getToolByName(self, 'portal_skins')
             template_folder = template_folder['pgdesktop_templates']
-            return  template_folder[id]
+            return template_folder[id]
 
-    def displayLayout(self):
+    def displayLayout(self, layout):
+        def top_layout(obj):
+            return obj.top_slot.raw or ''
+
+        def bottom_layout(obj):
+            return obj.bottom_slot.raw or ''
+
+        def left_layout(obj):
+            return obj.left_slot.raw or ''
+
+        def right_layout(obj):
+            return obj.right_slot.raw or ''
+
+        option = {
+            'top_slot': top_layout(self),
+            'left_slot': left_layout(self),
+            'bottom_slot': bottom_layout(self),
+            'right_slot': right_layout(self)
+        }
         fields = self.getFields()
-        html_content = self.page.raw
-        for field in fields:
-            fieldblock = '<span class="desktopField">%s</span>' %field['name']
-            pt = self.getTemplate(field['template'])
-            html = pt.pt_render(extra_context = field)
-            html_content = html_content.replace(fieldblock,html)
+        if not layout in ('top_slot', 'bottom_slot', 'left_slot', 'right_slot'):
+            return ''
+        html_content = option[layout]
+        if not html_content:
+            return ''
+        for fld in fields:
+            fieldblock = '<span class="desktopField">%s</span>' % fld['name']
+            pt = self.getTemplate(fld['template'])
+            html = pt.pt_render(extra_context=fld)
+            html_content = html_content.replace(fieldblock, html)
         return html_content
 
 # View class
@@ -113,6 +138,7 @@ class pg_desktop(Container):
 # You may make this the default view for content objects
 # of this type by uncommenting the grok.name line below or by
 # changing the view class name and template filename to View / view.pt.
+
 
 class View(grok.View):
     """ sample view class """

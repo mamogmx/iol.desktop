@@ -7,15 +7,26 @@
 			<description/>
 			<title>Javascript Settings</title>
 		</field>
-		<field name="page" type="plone.app.textfield.RichText">
-			<description/>
-			<title>Html</title>
-		</field>
-		<field name="template_macro" type="zope.schema.TextLine">
-			<description/>
-			<title>Template Macro's</title>
-            <required>False</required>
-		</field>
+
+
+        <fieldset name="html_slots" label="Slots" description="Html to render in the page">
+             <field name="top_slot" type="plone.app.textfield.RichText">
+			    <description/>
+			    <title>Top Slot</title>
+		     </field>
+             <field name="right_slot" type="plone.app.textfield.RichText">
+			    <description/>
+			    <title>Right Slot</title>
+		     </field>
+             <field name="bottom_slot" type="plone.app.textfield.RichText">
+			    <description/>
+			    <title>Bottom Slot</title>
+		     </field>
+             <field name="left_slot" type="plone.app.textfield.RichText">
+			    <description/>
+			    <title>Left Slot</title>
+		     </field>
+        </fieldset>
         <fieldset name="db_settings" label="Database Settings" description="Database Settings (connection string,schema and table)">
 			<field name="conn_string" type="zope.schema.TextLine">
 				<description/>

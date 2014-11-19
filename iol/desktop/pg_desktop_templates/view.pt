@@ -20,8 +20,8 @@
 	<LINK media="screen" href="/++resource++iol.desktop/bootstrap.css" type="text/css" rel="stylesheet"/>
 	<LINK media="screen" href="/++resource++iol.desktop/bootstrap.dataTables.css" type="text/css" rel="stylesheet"/>
 </metal:css>
-<metal:main fill-slot="body">
-    <tal:main-macro metal:define-macro="body">
+<metal:main fill-slot="main">
+    <tal:main-macro metal:define-macro="main">
 
         <div tal:replace="structure provider:plone.abovecontenttitle" />
 
@@ -33,25 +33,35 @@
         <div tal:replace="structure provider:plone.abovecontentbody" />
         <div class="row-fluid">
             <div class="span3">
-
+                <div class="class="row-fluid">
+                    <div class="span12">
+                        <div tal:replace="structure python: context.displayLayout('left_slot')" />
+                    </div>
+                </div>
             </div>
             <div class="span6">
                 <div class="row-fluid">
-                    <div class="span12"></span>
-                </div>
-                <div class="row-fluid">
                     <div class="span12">
-                        <div tal:replace="structure context/displayLayout" />
-                    </span>
+                        <div tal:replace="structure python: context.displayLayout('top_slot')" />
+                    </div>
                 </div>
                 <div class="row-fluid">
                     <div class="span12">
                         <table id="resultTable"></table>
-                    </span>
+                    </div>
+                </div>
+                <div class="row-fluid">
+                    <div class="span12">
+                        <div tal:replace="structure python: context.displayLayout('bottom_slot')" />
+                    </div>
                 </div>
             </div>
             <div class="span3">
-
+                <div class="class="row-fluid">
+                    <div class="span12">
+                        <div tal:replace="structure python: context.displayLayout('right_slot')" />
+                    </div>
+                </div>
             </div>
         </div>
 
