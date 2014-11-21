@@ -1,13 +1,13 @@
-from zope.interface import Interface
+from Products.CMFPlomino.interfaces import IPlominoDocument
 
 class IDesktopLayer(Interface):
     """Marker interface for the Browserlayer
     """
 
 
-class IIolProvider(Interface):
+class IIolAdapter(IPlominoDocument):
 
-    def wfInfo(self):
+    def wfInfo2(self):
         """
         @return information about workflow
         """

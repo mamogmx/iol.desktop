@@ -1,10 +1,5 @@
-import zope.interface
-from Products.CMFPlomino.interfaces import IPlominoDocument,IPlominoForm
-
-class IolAdapters(object):
-
-    zope.interface.implements(IPlominoDocument)
-    #zope.interface.adapts(IPlominoForm)
+class IolAdapter(object):
+    #zope.interface.adapts(IPlominoDocument)
 
     def __init__(self, context):
         # Each adapter takes the object itself as the construction
@@ -12,7 +7,7 @@ class IolAdapters(object):
         # interface adaption
         self.context = context
 
-    def wfInfo(self):
+    def wfInfo2(self):
         return dict(
             review_state = 'a',
             review_history = []
