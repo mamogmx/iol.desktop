@@ -34,7 +34,7 @@ class pgsearch(BrowserView):
             data = json.loads(r['data'])
             data['id'] = r['id']
             result['aaData'].append(data)
-        result['iTotalDisplayRecords'] = len(result['aaData'])
+        result['iTotalDisplayRecords'] = totali
 
         return result
 
