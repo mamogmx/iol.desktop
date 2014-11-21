@@ -4,7 +4,7 @@ from Products.CMFPlomino.interfaces import IPlominoDocument,IPlominoForm
 class IolAdapters(object):
 
     zope.interface.implements(IPlominoDocument)
-    zope.interface.implements(IPlominoForm)
+    #zope.interface.adapts(IPlominoForm)
 
     def __init__(self, context):
         # Each adapter takes the object itself as the construction
