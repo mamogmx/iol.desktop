@@ -1,4 +1,4 @@
-from Products.CMFPlomino.interfaces import IPlominoDocument
+
 from zope.interface import Interface
 
 class IDesktopLayer(Interface):
@@ -6,7 +6,7 @@ class IDesktopLayer(Interface):
     """
 
 
-class IIolAdapter(IPlominoDocument):
+class IIolAdapter(Interface):
 
     def wfInfo2(self):
         """
