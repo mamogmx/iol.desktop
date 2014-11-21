@@ -41,4 +41,11 @@
   <!-- -*- extra stuff goes here -*- -->
 	<cmf:registerDirectory name="pgdesktop_templates" recursive="True" />
 
+  <adapter
+    for="Products.CMFPlomino.PlominoDocument.PlominoDocument
+         Products.CMFPlomino.PlominoForm.PlominoForm"
+    provides=".interfaces.IIolProvider"
+    factory=".adapters.IolAdapters"
+  />
+
 </configure>
