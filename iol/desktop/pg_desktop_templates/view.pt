@@ -5,26 +5,29 @@
       lang="en"
       metal:use-macro="context/main_template/macros/master"
       i18n:domain="iol.desktop">
-<body>
+<body tal:define="ajax_load python: False">
 
 <tal:comment tal:condition="nothing">
     This is a sample view template. It will not be used for rendering the
     content unless activated by creation of a view class with a matching name.
 </tal:comment>
 <metal:js metal:fill-slot="javascript_head_slot">
-<script type="text/javascript" src="/++resource++iol.desktop/jquery.dataTables.min.js"></script>
-	<!--<script type="text/javascript" src="/++resource++iol.desktop/bootstrap.min.js"></script>
+<!--<script type="text/javascript" src="/++resource++iol.desktop/jquery.dataTables.min.js"></script>-->
+	<script type="text/javascript" src="/++resource++iol.desktop/bootstrap.min.js"></script>
 	<script type="text/javascript" src="/++resource++iol.desktop/bootstrap.dataTables.js"></script>
-	<script type="text/javascript" src="/++resource++iol.desktop/search.pgdesktop.js"></script>-->
+	<script type="text/javascript" src="/++resource++iol.desktop/search.pgdesktop.js"></script>
 </metal:js>
 <metal:css metal:fill-slot="style_slot">
-	<!--<LINK media="screen" href="/++resource++iol.desktop/bootstrap.css" type="text/css" rel="stylesheet"/>
+	<LINK media="screen" href="/++resource++iol.desktop/bootstrap.css" type="text/css" rel="stylesheet"/>
 	<LINK media="screen" href="/++resource++iol.desktop/bootstrap-responsive.css" type="text/css" rel="stylesheet"/>
-	<LINK media="screen" href="/++resource++iol.desktop/bootstrap.dataTables.css" type="text/css" rel="stylesheet"/>-->
+	<LINK media="screen" href="/++resource++iol.desktop/bootstrap.dataTables.css" type="text/css" rel="stylesheet"/>
+	<LINK media="screen" href="/++resource++iol.desktop/desktop.css" type="text/css" rel="stylesheet"/>	
 </metal:css>
-<metal:main fill-slot="main">
-    <tal:main-macro metal:define-macro="main">
 
+<metal:main metal:fill-slot="content">
+	
+    <tal:main-macro metal:define-macro="content">
+		<div class="desktop-container">
         <div tal:replace="structure provider:plone.abovecontenttitle" />
 
         <h1 class="documentFirstHeading" tal:content="context/title" />
@@ -34,14 +37,14 @@
         <p class="documentDescription" tal:content="context/description" />
         <div tal:replace="structure provider:plone.abovecontentbody" />
         <div class="row-fluid">
-            <div class="span3">
+            <div class="span2">
                 <div class="class="row-fluid">
                     <div class="span12">
                         <div tal:replace="structure python: context.displayLayout('left_slot')" />
                     </div>
                 </div>
             </div>
-            <div class="span6">
+            <div class="span9">
                 <div class="row-fluid">
                     <div class="span12">
                         <div tal:replace="structure python: context.displayLayout('top_slot')" />
@@ -71,7 +74,7 @@
                     </div>
                 </div>
             </div>
-            <div class="span3">
+            <div class="span1">
                 <div class="class="row-fluid">
                     <div class="span12">
                         <div tal:replace="structure python: context.displayLayout('right_slot')" />
@@ -82,7 +85,7 @@
 
 
         <div tal:replace="structure provider:plone.belowcontentbody" />
-
+		</div>
     </tal:main-macro>
 </metal:main>
 

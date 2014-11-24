@@ -12,6 +12,11 @@ iol.desktop.egg-info/paster_plugins.txt
 iol.desktop.egg-info/requires.txt
 iol.desktop.egg-info/top_level.txt
 iol/desktop/__init__.py
+iol/desktop/adapters.py
+iol/desktop/datatables.py
 iol/desktop/interfaces.py
 iol/desktop/pg_desktop.py
+iol/desktop/pg_search_field.py
 iol/desktop/tests.py
+iol/desktop/browser/__init__.py
+iol/desktop/browser/views.py

@@ -67,9 +67,15 @@ class pg_desktop(Container):
         for brain in brains:
             i = brain.getObject()
             try:
-                v = json.loads(i.search_val)
-            except:
                 v = list()
+                lst = i.search_val.split(',')
+                for l in lst:
+                    (val,lbl) = l.split('|')
+                    v.append(dict(label=lbl,value=val))
+            except Exception as e:
+                
+                print str(e)
+                v = [{'value':'error','label':'Errore'}]
             try:
                 opt = json.loads(i.search_opt)
             except:

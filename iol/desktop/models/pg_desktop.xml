@@ -49,7 +49,23 @@
 				<required>False</required>
 			</field>
 		</fieldset>
-        
+        <fieldset name="security_settings" label="Security Settings" description="Secutity Settings (How can view What)">
+			<field name="owner_groups" type="zope.schema.Text">
+				<description/>
+				<required>False</required>
+				<title>Owner Groups (Groups or Users comma separeted)</title>
+			</field>
+			<field name="reviewer_groups" type="zope.schema.Text">
+				<description/>
+				<required>False</required>
+				<title>Reviewer Groups (Groups or Users comma separeted)</title>
+			</field>
+			<field name="manager_groups" type="zope.schema.Text">
+				<description/>
+				<required>False</required>
+				<title>Manager Groups (Groups or Users comma separeted)</title>
+			</field>
+		</fieldset>
     </schema>
     
 </model>

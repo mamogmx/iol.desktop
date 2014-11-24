@@ -35,8 +35,12 @@ class pgDataTables(object):
         if not self.queryParams:
             return 'true'
         flt = list()
-        for key,v in self.queryParams.keys():
-            flt.append(options[v['op']](key,v))
+        for key,v in self.queryParams.iteritems():
+            if v['subname']:
+                k = "%s->>'%s'" %(v['name'],v['subname'])
+            else:
+                k = v['name']
+            flt.append(options[v['op']](k,v))
         return (' %s ' %mode).join(flt)
 
     def limit(self):
@@ -56,6 +60,5 @@ class pgDataTables(object):
 
         sFilter = self.filter()
         query = "SELECT count(*) as totali FROM %s.%s WHERE %s" %(self.schema,self.table,sFilter)
-        print query
         return query
 
