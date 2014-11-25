@@ -65,7 +65,7 @@
                                 sAjaxSource: 'pgsearch',
                                 fnServerData: function(aoData){
                                     var data = $('#desktop-object').serializePGQuery();
-                                    aoData.push('name':'query','value',data);
+                                    aoData.push({'name':'query','value':data});
                                 },
                                 sServerMethod: 'POST',
                                 ${jsSettings}
