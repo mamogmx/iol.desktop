@@ -63,7 +63,7 @@
                                 bProcessing: true,
                                 bServerSide: true,
                                 sAjaxSource: 'pgsearch',
-                                fnServerData: function(aoData){
+                                fnServerParams: function(aoData){
                                     var data = $('#desktop-object').serializePGQuery();
                                     aoData.push({'name':'query','value':data});
                                 },
