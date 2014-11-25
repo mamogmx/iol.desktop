@@ -57,7 +57,18 @@ $.extend( true, $.fn.dataTable.defaults, {
 		var data = $('#desktop-object').serializePGQuery();
 		aoData.push({'name':'query','value': JSON.stringify(data)});
 	},
+	fnDrawCallback: function( oSettings ) {
+		$("[data-plugins='gotoIstanza']").bind('click',function(event){
+			var data = $(this).data();
+			window.open(data['url']);
+		});
+	}
 });
+
+function linkIstanza(data,type,full){
+	return '<i class="icon-search linkable" data-plugins="gotoIstanza" data-url="/' + full['plominodb'] + '/' + full['id'] + '"></i>';
+}
+
 $(document).ready(function(){
 	$("[data-plugins='operator']").bind('change',function(event){
         var id = this.id.replace('_op','');

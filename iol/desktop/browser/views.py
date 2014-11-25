@@ -19,7 +19,20 @@ class DateTimeEncoder(json.JSONEncoder):
         else:
             return super(DateTimeEncoder, self).default(obj)
             
-            
+def transformDate(obj):
+    res = dict()
+    for k,v in obj.iteritems():
+        try:
+            d = datetime.datetime.strptime(v,'%Y-%m-%dT%H:%M:%S').strftime('%d/%m/%Y')
+            obj[k] = d
+        except:
+            try:
+                d = datetime.datetime.strptime(v,'%Y-%m-%dT%H:%M:%S+%Z').strftime('%d/%m/%Y')
+                obj[k] = d
+            except:
+                obj[k] = v  
+    return obj   
+        
 class pgsearch(BrowserView):
     def __init__(self, context, request):
         # Each view instance receives context and request as construction parameters
@@ -83,7 +96,6 @@ class pgsearch(BrowserView):
 
         queryTot = dt.findTotal()
         query = dt.findResult()
-        
         resTot = connection.execute(queryTot)
         totali = int(resTot.fetchall()[0]["totali"])
         result["iTotalRecords"] = totali
@@ -93,11 +105,12 @@ class pgsearch(BrowserView):
         for r in d:
             try:
                 r = dict(r)
-                data = json.loads(json.dumps(r['data'],cls=DateTimeEncoder,use_decimal=True))
+                data = json.loads(json.dumps(r['data']),object_hook = transformDate)
             except Exception as e:
                 print str(e)
                 data=dict()
             data['id'] = r['id']
+            data['plominodb'] = r['plominodb']
             result['aaData'].append(data)
         result['iTotalDisplayRecords'] = totali
 

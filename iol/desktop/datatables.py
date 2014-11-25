@@ -31,7 +31,7 @@ class pgDataTables(object):
         self.lim = req.get('iDisplayLength','ALL')
         self.offset = req.get('iDisplayStart','0')
         self.sort = req.get('mDataProp_%s' %req.get('iSortCol_0','-1'), '')
-        self.sortType = req.get('mDataType_%s' %req.get('iSortCol_0','-1'), '')
+        self.sortType = req.get('mDataType_%s' %req.get('iSortCol_0','-1'), 'text')
         self.sortDir = req.get('sSortDir_0','ASC')
         
     def filter(self, mode = 'AND'):
@@ -51,7 +51,7 @@ class pgDataTables(object):
         return "%s OFFSET %s" %(sLimit,self.offset)
     def order(self):
         if self.sort != '-1':
-            return " ORDER BY CAST(data->>'%s'as %s) %s" %(self.sort,self.sortType,self.sortDir) 
+            return " ORDER BY CAST(data->>'%s' as %s) %s" %(self.sort,self.sortType,self.sortDir) 
         return ""
     def findResult(self):
         sFilter = self.filter()
