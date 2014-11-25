@@ -2,7 +2,7 @@
     <div class="span12">
         <label class="control-label" tal:content="title"/>
         <div tal:repeat="chk values">
-            <input type="checkbox" tal:attributes="name string:${name};id string:${name}-${chk/value};value chk/value;data-name string:${fieldname};data-subname string:${subfieldname}" class="dynamicsearch">
+            <input type="checkbox" tal:attributes="name string:${name};id string:${name}-${chk/value};value chk/value;data-name string:${fieldname};data-subname string:${subfieldname}" data-plugins="dynamicsearch">
             <span tal:content="chk/label"/>
         </div>    
     <input type="hidden" tal:attributes="name string:${name}_searchtype;id string:${name}_searchtype" value="text"/>

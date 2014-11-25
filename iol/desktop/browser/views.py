@@ -4,8 +4,22 @@ from iol.desktop.datatables import pgDataTables
 from Acquisition import aq_parent
 import sqlalchemy as sql
 from plone import api
-
-
+import datetime
+import DateTime
+class DateTimeEncoder(json.JSONEncoder):
+    def default(self, obj):
+        if isinstance(obj, datetime.datetime):
+            return obj.strftime('%d/%m/%Y')
+        elif isinstance(obj, datetime.date):
+            return obj.strftime('%d/%m/%Y')
+        elif isinstance(obj, datetime.timedelta):
+            return (datetime.datetime.min + obj).time().isoformat()
+        elif isinstance(obj,DateTime.DateTime):
+            return DateTime.DateTime.strftime('%d/%m/%Y')
+        else:
+            return super(DateTimeEncoder, self).default(obj)
+            
+            
 class pgsearch(BrowserView):
     def __init__(self, context, request):
         # Each view instance receives context and request as construction parameters
@@ -14,6 +28,7 @@ class pgsearch(BrowserView):
 
     def search(self):
         request = self.request
+        
         desktop = self.aq_parent
         desktop_mng = desktop.manager_groups or ''
         desktop_rvw = desktop.reviewer_groups or ''
@@ -31,7 +46,7 @@ class pgsearch(BrowserView):
         groups = [grp.id for grp in api.group.get_groups(username=current.id)]
         
         condition = None
-        prms = request.get('query',dict())
+        prms = json.loads(request.get('query','{}'))
         if 'Manager' in roles:
             condit = 1
         else:
@@ -78,7 +93,7 @@ class pgsearch(BrowserView):
         for r in d:
             try:
                 r = dict(r)
-                data = r['data']
+                data = json.loads(json.dumps(r['data'],cls=DateTimeEncoder,use_decimal=True))
             except Exception as e:
                 print str(e)
                 data=dict()

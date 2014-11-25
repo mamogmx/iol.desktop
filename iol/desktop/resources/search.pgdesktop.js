@@ -6,49 +6,72 @@ $.fn.serializePGQuery = function() {
     $('#' + $(this).attr('id') + ' input[type=checkbox]:checked:not([name$="_op"]):not([name$="_searchtype"])').each(function(){
         if($(this).attr('checked')){
             info = $(this).data();
-	        query[this.name] = query[this.name] || {value:[],op:null,type:null};
-            query[this.name].value.push(this.value);
-	        query[this.name].op=$("#" + this.name + "_op").val();
-	        query[this.name].type=$("#" + this.name + "_searchtype").val();
-	        query[this.name].name = info['name'];
-	        query[this.name].subname = info['subname'];
-	        query[this.name].value.push(this.value);
+	        query[this.name] = query[this.name] || {value:[],op:null,type:null,name:null,subname:null};
+            query[this.name]['value'].push(this.value);
+	        query[this.name]['op']=$("#" + this.name + "_op").val();
+	        query[this.name]['type']=$("#" + this.name + "_searchtype").val();
+	        query[this.name]['name'] = info['name'];
+	        query[this.name]['subname'] = info['subname'];			
         }
     });
     /* Input */
     $('#' + $(this).attr('id') + ' input[type=text]:not([name$="_op"]):not([name$="_searchtype"])').each(function(){
         if($(this).val() && $(this).attr('name')){
             info = $(this).data();
-            query[this.name] = query[this.name] || {value:[],op:null,type:null};
-            query[this.name].value.push($(this).val());
-	        query[this.name].op=$("#" + this.name + "_op").val();
-            query[this.name].type=$("#" + this.name + "_searchtype").val();
-            query[this.name].name = info['name'];
-	        query[this.name].subname = info['subname'];
+            query[this.name] = query[this.name] || {value:[],op:null,type:null,name:null,subname:null};
+            query[this.name]['value'].push($(this).val());
+	        query[this.name]['op'] =$("#" + this.name + "_op").val();
+            query[this.name]['type'] =$("#" + this.name + "_searchtype").val();
+            query[this.name]['name'] = info['name'];
+	        query[this.name]['subname'] = info['subname'];
         }
     });
     /*Hidden Fields*/
     $('#' + $(this).attr('id') + ' input[type=hidden]:not([name$="_op"]):not([name$="_searchtype"])').each(function(){
         if($(this).val() && $(this).attr('name')){
             info = $(this).data();
-            query[this.name] = query[this.name] || {value:[],op:null,type:null};
-            query[this.name].value.push($(this).val());
-	        query[this.name].op=$("#" + this.name + "_op").val();
-            query[this.name].type=$("#" + this.name + "_searchtype").val();
-            query[this.name].name = info['name'];
-	        query[this.name].subname = info['subname'];
+            query[this.name] = query[this.name] || {value:[],op:null,type:null,name:null,subname:null};
+            query[this.name]['value'].push($(this).val());
+	        query[this.name]['op'] = $("#" + this.name + "_op").val();
+            query[this.name]['type'] = $("#" + this.name + "_searchtype").val();
+            query[this.name]['name'] = info['name'];
+	        query[this.name]['subname'] = info['subname'];
         }
     });
     /*TODO SELECT FIELDS*/
-
+	console.log(query);
     return query;
 };
-
+$.extend( true, $.fn.dataTable.defaults, {    
+    "sDom": "<'row-fluid'<'span12'>r>t<'row-fluid'<'span3'l><'span4'i><'span5'p>>",
+    "sPaginationType": "bootstrap",
+	"oLanguage": {
+        "sUrl": "@@collective.js.datatables.translation"
+    },
+	fnServerParams: function(aoData){
+		var cols = this.fnSettings().aoColumns;
+		for(i=0;i < cols.length;i++){
+			var t = (cols[i]['sType'] == undefined)?('text'):(cols[i]['sType']);
+			aoData.push({name:'mDataType_'+i,value:t});
+		}
+		var data = $('#desktop-object').serializePGQuery();
+		aoData.push({'name':'query','value': JSON.stringify(data)});
+	},
+});
 $(document).ready(function(){
-    $('.dynamicsearch').bind('click',function(event){
+	$("[data-plugins='operator']").bind('change',function(event){
+        var id = this.id.replace('_op','');
+		if ($(this).val()=='btw'){
+			$('#' + id + '_span2').show();
+		}
+		else{
+			$('#' + id + '_span2').hide();
+		}
+    });
+    $("[data-plugins='dynamicsearch']").bind('click',function(event){
         table.fnDraw()
     });
-    $('[data-plugin="search"]').bind('click',function(event){
+    $('[data-plugins="desktop-search"]').bind('click',function(event){
         event.preventDefault();
         table.fnDraw()
     });

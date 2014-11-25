@@ -24,9 +24,9 @@
 	<LINK media="screen" href="/++resource++iol.desktop/desktop.css" type="text/css" rel="stylesheet"/>	
 </metal:css>
 
-<metal:main metal:fill-slot="content">
+<metal:main metal:fill-slot="main">
 	
-    <tal:main-macro metal:define-macro="content">
+    <tal:main-macro metal:define-macro="main">
 		<div class="desktop-container">
         <div tal:replace="structure provider:plone.abovecontenttitle" />
 
@@ -57,17 +57,14 @@
                     <script type="text/javascript"
                         tal:define="jsSettings context/js_settings"
                         tal:content="string:
-                            jQuery('#resultTable').dataTable({
+                            var table = jQuery('#resultTable').dataTable({
                                 bDeferRender: true,
                                 bFilter: false,
                                 bProcessing: true,
                                 bServerSide: true,
                                 sAjaxSource: 'pgsearch',
-                                fnServerParams: function(aoData){
-                                    var data = $('#desktop-object').serializePGQuery();
-                                    aoData.push({'name':'query','value':data});
-                                },
                                 sServerMethod: 'POST',
+								sPaginationType: 'bootstrap',
                                 ${jsSettings}
                             });
                     "></script>
