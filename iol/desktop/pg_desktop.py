@@ -93,7 +93,21 @@ class pg_desktop(Container):
             )
             results.append(obj)
         return results
-        
+       
+    def loadResources(self):
+        result = dict(
+            css = ['/++resource++iol.desktop/bootstrap.css','/++resource++iol.desktop/bootstrap-responsive.css','/++resource++iol.desktop/bootstrap.dataTables.css','/++resource++iol.desktop/desktop.css'],
+            js = ['/++resource++iol.desktop/bootstrap.min.js','/++resource++iol.desktop/bootstrap.dataTables.js','/++resource++iol.desktop/search.pgdesktop.js']
+        )
+        if 'resources' in self.keys():
+            res = self['resources']
+            for f in res.keys():
+                if f.endswith('.css'):
+                    result['css'].append('resources/%s' %f)
+                elif f.endswith('.js'):
+                    result['js'].append('resources/%s' %f)
+        return result
+            
     def getTemplate(self,id):
         current_path = "/".join(self.getPhysicalPath())
         if id in current_path:
