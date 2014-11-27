@@ -1,0 +1,13 @@
+#resultTable{
+}
+div.desktop-container{
+	padding:30px;
+}
+
+.bootstrap-search{
+	width:90%;
+}
+i.linkable{
+	cursor: pointer; 
+	cursor: hand;
+}
