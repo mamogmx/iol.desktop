@@ -32,10 +32,10 @@
       <required>False</required>
       <title>Values</title>
     </field>
-    <field name="search_opt" type="zope.schema.Text">
-      <description>It Must be a dictionary</description>
+   <field name="start_val" type="zope.schema.Text">
+      <description>Starting Values</description>
       <required>False</required>
-      <title>Options</title>
+      <title>Starting Values</title>
     </field>
   </schema>
 </model>
