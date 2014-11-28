@@ -6,6 +6,11 @@
 		<field name="js_settings" type="zope.schema.Text">
 			<description/>
 			<title>Javascript Settings</title>
+            <default>
+                aoColumns:[
+                    {mDataProp:'id',sSortable:false,sVisible:false}
+                ]
+            </default>
 		</field>
 
 
