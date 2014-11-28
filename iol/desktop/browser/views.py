@@ -6,6 +6,9 @@ import sqlalchemy as sql
 from plone import api
 import datetime
 import DateTime
+from dateutil.parser import *
+
+
 class DateTimeEncoder(json.JSONEncoder):
     def default(self, obj):
         if isinstance(obj, datetime.datetime):
@@ -27,7 +30,7 @@ def transformDate(obj):
             obj[k] = d
         except:
             try:
-                d = datetime.datetime.strptime(v,'%Y-%m-%dT%H:%M:%S+%Z').strftime('%d/%m/%Y')
+                d = parse(v,ignoretz=True).strftime('%d/%m/%Y')
                 obj[k] = d
             except:
                 obj[k] = v  
