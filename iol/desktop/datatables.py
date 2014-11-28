@@ -9,7 +9,8 @@ def inlist(key,v):
 def between(key,v):
     return "(coalesce(%s,'')<>'' AND ((%s)::%s >= '%s'::%s) AND ((%s)::%s <= '%s'::%s))" %(key,key,v['type'],v['value'][0],v['type'],key,v['type'],v['value'][1],v['type'])
 def contains(key,v):
-    return "((%s) ILIKE '%" + v['value'][0].replace("'","\'") +"%')" %(key)
+    val = v['value'][0].replace("'","\'")
+    return "((%s) ILIKE '%%s%')" %(key,val)
 def equal(key,v):
     return "(coalesce(%s,'')<>'' AND (%s)::%s = '%s'::%s)" %(key,key,v["type"],v["value"][0],v["type"])
 
