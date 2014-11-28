@@ -49,6 +49,27 @@
 				<required>False</required>
 			</field>
 		</fieldset>
+        <fieldset name="map" label="Maps Settings" description="Maps Settings">
+            <field name="desktop_with_map" type="zope.schema.Choice">
+				  <description>Map Position</description>
+                  <title>Map Position</title>
+                  <values>
+                    <element>nomap</element>
+                    <element>top</element>
+                    <element>bottom</element>
+                  </values>
+			</field>
+            <field name="mapwidth" type="zope.schema.TextLine">
+				<description/>
+				<title>Map Width</title>
+				<required>False</required>
+			</field>
+            <field name="mapheight" type="zope.schema.TextLine">
+				<description/>
+				<title>Map Height</title>
+				<required>False</required>
+			</field>
+        </fieldset>
         <fieldset name="security_settings" label="Security Settings" description="Secutity Settings (How can view What)">
 			<field name="owner_groups" type="zope.schema.Text">
 				<description/>
