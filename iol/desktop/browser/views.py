@@ -98,11 +98,11 @@ class pgsearch(BrowserView):
         query = dt.findResult()
         print queryTot
         print query
-        resTot = connection.execute(queryTot)
+        resTot = connection.execute(sql.text(queryTot))
         totali = int(resTot.fetchall()[0]["totali"])
         result["iTotalRecords"] = totali
 
-        res = connection.execute(query)
+        res = connection.execute(sql.text(query))
         d = res.fetchall()
         for r in d:
             try:
