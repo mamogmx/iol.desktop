@@ -1,8 +1,10 @@
 from zope.schema.vocabulary import SimpleVocabulary
-from plone import api
+from Products.CMFCore.utils import getToolInterface
 
 def listGroups():
-    return SimpleVocabulary.fromItems([(grp.title,grp.groupname) for grp in api.group.get_groups()])
+    acl_users = getToolByName(self, 'acl_users')
+    group_list = acl_users.source_groups.getGroups()
+    return SimpleVocabulary.fromItems([(group.title, group.getName())for group in group_list:])
 
 map_position = SimpleVocabulary.fromItems([( 'No Map','nomap',), ( 'Position Top','top',),('Position Bottom','bottom',)])
 
