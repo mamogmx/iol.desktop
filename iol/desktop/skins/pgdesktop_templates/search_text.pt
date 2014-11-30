@@ -2,9 +2,8 @@
 <div class="row-fluid">
     <div class="span4">
         <select class="bootstrap-search" tal:attributes="name string:${name}_op;id string:${name}_op" data-plugins="remove-on-cancel">
-            <option value=""></option>
-            <option value="eq">Uguale a</option>
             <option value="contains">Contiene</option>
+            <option value="eq">Uguale a</option>
         </select>
     </div>
     <div class="span8" tal:attributes="id string:${name}_span1">

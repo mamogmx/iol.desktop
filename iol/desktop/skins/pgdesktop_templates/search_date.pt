@@ -2,7 +2,6 @@
 <div class="row-fluid">
     <div class="span4">
         <select class="bootstrap-search" tal:attributes="name string:${name}_op;id string:${name}_op" data-plugins="operator">
-            <option value=""></option>
             <option value="eq">Uguale a</option>
             <option value="gt">Dopo il</option>
             <option value="lt">Prima del</option>
