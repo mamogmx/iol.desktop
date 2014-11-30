@@ -1,8 +1,9 @@
+from five import grok
 from zope.schema.vocabulary import SimpleVocabulary
 from Products.CMFCore.utils import getToolByName
 
-class listGroups(self):
-    def __call__(self):
+class listGroups(object):
+    def __call__(self,context):
         acl_users = getToolByName(self, 'acl_users')
         group_list = acl_users.source_groups.getGroups()
         return SimpleVocabulary.fromItems([(group.title, group.getName()) for group in group_list])
