@@ -46,6 +46,7 @@ class Ipg_desktop(form.Schema, IImageScaleTraversable):
             engine = sql.create_engine(desktop.conn_string)
             connection = engine.connect()
         except:
+            pass
             raise zope.interface.Invalid("Not a valid connection string '%s'" %desktop.conn_string)
 
 # Custom content-type class; objects created for this content type will
