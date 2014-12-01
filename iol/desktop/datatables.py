@@ -14,7 +14,10 @@ def contains(key,v):
 def equal(key,v):
     return "(coalesce(%s,'')<>'' AND (%s)::%s = '%s'::%s)" %(key,key,v["type"],v["value"][0],v["type"])
 def array_intersect(key,v):
-    return "((%s) && ARRAY['%s'])" %(key,"','".join(v['value']))
+    value = list()
+    for vv in v['value']:
+        value.append("'%s'::%s") %(vv,v['type'])
+    return "((%s) && ARRAY[%s])" %(key,",".join(value))
 
 options = {
     'gt' : greaterthen,
