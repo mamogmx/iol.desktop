@@ -65,26 +65,33 @@ class pgsearch(BrowserView):
         else:
             for grp in desktop_manager:
                 if grp in groups:
+                    prms['iol_manager']=dict(
+                        op='in',
+                        name='iol_manager',
+                        subname='',
+                        value= groups + [current.id],
+                        type='text'
+                    )
                     condition = 1
             if not condition:
                 for grp in desktop_reviewer:
                     if grp in groups:
-                        prms['istruttore']=dict(
-                            op='eq',
-                            name='data',
-                            subname='istruttore',
-                            value=[current.id],
-                            type='text'
-                        )
+                        prms['iol_reviewer']=dict(
+                        op='in',
+                        name='iol_reviewer',
+                        subname='',
+                        value= groups + [current.id],
+                        type='text'
+                    )
                         condition = 1
                 if not condition:
                     for grp in desktop_reviewer:
                         if grp in groups:
-                            prms['owner']=dict(
-                                op='eq',
-                                name='owner',
+                            prms['iol_owner']=dict(
+                                op='in',
+                                name='iol_owner',
                                 subname='',
-                                value=[current.id],
+                                value= groups + [current.id],
                                 type='text'
                             )
         request.set('query',prms)
