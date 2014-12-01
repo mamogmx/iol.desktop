@@ -16,7 +16,7 @@ def equal(key,v):
 def array_intersect(key,v):
     value = list()
     for vv in v['value']:
-        value.append("'%s'::%s") %(vv,v['type'])
+        value.append("'%s'::%s" %(vv,v['type']))
     return "((%s) && ARRAY[%s])" %(key,",".join(value))
 
 options = {
