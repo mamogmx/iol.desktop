@@ -66,7 +66,7 @@ class pgsearch(BrowserView):
             for grp in desktop_manager:
                 if grp in groups:
                     prms['iol_manager']=dict(
-                        op='in',
+                        op='intersect',
                         name='iol_manager',
                         subname='',
                         value= groups + [current.id],
@@ -77,7 +77,7 @@ class pgsearch(BrowserView):
                 for grp in desktop_reviewer:
                     if grp in groups:
                         prms['iol_reviewer']=dict(
-                        op='in',
+                        op='intersect',
                         name='iol_reviewer',
                         subname='',
                         value= groups + [current.id],
@@ -88,7 +88,7 @@ class pgsearch(BrowserView):
                     for grp in desktop_reviewer:
                         if grp in groups:
                             prms['iol_owner']=dict(
-                                op='in',
+                                op='intersect',
                                 name='iol_owner',
                                 subname='',
                                 value= groups + [current.id],
