@@ -45,7 +45,7 @@
                 </div>
             </div>
             <div class="span9">
-                 <div class="row-fluid" id="map"  tal:define="map python: context.desktop_with_map" tal:condition="python:test(map=='top',True,False)">
+                 <div class="row-fluid" id="map"  tal:define="map python: context.desktop_with_map" tal:condition="python:map=='top'">
                     <div class="span12">
                         <div id="olMap"></div>
                     </div>
@@ -74,7 +74,7 @@
                             });
                     "></script>
                 </div>
-                <div class="row-fluid" id="map"  tal:define="map python: context.desktop_with_map" tal:condition="python:test(map=='bottom',True,False)">
+                <div class="row-fluid" id="map"  tal:define="map python: context.desktop_with_map" tal:condition="python:map=='bottom'">
                     <div class="span12">
                         <div id="olMap"></div>
                     </div>
