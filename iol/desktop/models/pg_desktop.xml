@@ -58,21 +58,26 @@ aoColumns:[
             <field name="owner_groups" type="zope.schema.List">
 				<description/>
 				<required>False</required>
-				<title>Owner Groups (Groups or Users)</title>
+				<title>Owner Groups</title>
                 <value_type type="zope.schema.Choice">
-					<title>Thing</title>
 					<source>iol.desktop.vocabularies.users_groups_list</source>
 				</value_type>
 			</field>
-			<field name="reviewer_groups" type="zope.schema.Text">
+			<field name="reviewer_groups" type="zope.schema.List">
 				<description/>
 				<required>False</required>
-				<title>Reviewer Groups (Groups or Users comma separeted)</title>
+				<title>Reviewer Groups </title>
+				<value_type type="zope.schema.Choice">
+					<source>iol.desktop.vocabularies.users_groups_list</source>
+				</value_type>
 			</field>
-			<field name="manager_groups" type="zope.schema.Text">
+			<field name="manager_groups" type="zope.schema.List">
 				<description/>
 				<required>False</required>
-				<title>Manager Groups (Groups or Users comma separeted)</title>
+				<title>Manager Groups</title>
+				<value_type type="zope.schema.Choice">
+					<source>iol.desktop.vocabularies.users_groups_list</source>
+				</value_type>
 			</field>
 		</fieldset>
 

@@ -3,12 +3,15 @@ from zope.schema.interfaces import IContextSourceBinder
 from zope.schema.vocabulary import SimpleVocabulary
 from Products.CMFCore.utils import getToolByName
 
-@grok.provider(IContextSourceBinder)
-def listGroups(context):
-
-    acl_users = getToolByName(context, 'acl_users')
-    group_list = acl_users.source_groups.getGroups()
-    return SimpleVocabulary.fromItems([(group.title, group.getName()) for group in group_list])
+class listGroups(object):
+    grok.implements(IContextSourceBinder)
+    def __call__(self,context):
+        acl_users = getToolByName(context, 'acl_users')
+        group_list = acl_users.source_groups.getGroups()
+        terms = [SimpleVocabulary.createTerm('Authenticated Users', 'Authenticated Users', 'Authenticated Users')]
+        for group in group_list:
+            terms.append(SimpleVocabulary.createTerm(group.getName(), group.getName() ,group.title or  group.getName()))
+        return SimpleVocabulary(terms)
 
 map_position = SimpleVocabulary.fromItems([( 'No Map','nomap',), ( 'Position Top','top',),('Position Bottom','bottom',)])
 
