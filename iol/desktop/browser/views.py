@@ -46,13 +46,10 @@ class pgsearch(BrowserView):
         request = self.request
         
         desktop = self.aq_parent
-        desktop_mng = desktop.manager_groups or ''
-        desktop_rvw = desktop.reviewer_groups or ''
-        desktop_own = desktop.owner_groups or ''
-        
-        desktop_manager = desktop_mng.split(',') or []
-        desktop_reviewer = desktop_rvw.split(',') or []
-        desktop_owner = desktop_own.split(',') or []
+
+        desktop_manager = desktop.manager_groups or []
+        desktop_reviewer = desktop.reviewer_groups  or []
+        desktop_owner = desktop.owner_groups or []
         
         result = {'aaData': list(), 'sEcho': request.get('sEcho',0), 'iTotalRecords': 0, 'iTotalDisplayRecords': 0, 'error':''}
         if api.user.is_anonymous():

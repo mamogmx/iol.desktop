@@ -1,0 +1,18 @@
+<configure
+  xmlns="http://namespaces.zope.org/zope"
+  xmlns:i18n="http://namespaces.zope.org/i18n"
+  xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+  i18n_domain="iol.desktop">
+
+  <genericsetup:upgradeStep
+    title="Convert groups objects"
+    description="Updates owner_groups,reviewer groups, manager_groups from string to list"
+    source="1"
+    destination="1001"
+    handler="iol.desktop.upgrades.update_groups"
+    sortkey="1"
+    profile="iol.desktop:default"
+    />
+
+
+</configure>
