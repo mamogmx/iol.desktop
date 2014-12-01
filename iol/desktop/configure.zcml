@@ -38,8 +38,6 @@
       description="Extension profile for Desktop for IOL Application"
       provides="Products.GenericSetup.interfaces.EXTENSION"
       />
-
-  </genericsetup:importStep>
   <!-- -*- extra stuff goes here -*- -->
 	<cmf:registerDirectory name="pgdesktop_templates" recursive="True" />
 
