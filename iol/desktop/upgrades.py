@@ -12,9 +12,12 @@ def update_groups(setup):
     brains = catalog(portal_type='pg_desktop')
     for brain in brains:
         desk = brain.getObject()
-        owner = desk.owner_groups.split(',') or []
-        desk.owner_groups = owner
-        reviewer = desk.reviewer_groups.split(',') or []
-        desk.reviewer_groups_groups = reviewer
-        manager = desk.manager_groups.split(',') or []
-        desk.manager_groups = manager
+        if isinstance(desk.owner_groups,basestring):
+            owner = desk.owner_groups.split(',') or []
+            desk.owner_groups = owner
+        if isinstance(desk.reviewer_groups,basestring):
+            reviewer = desk.reviewer_groups.split(',') or []
+            desk.reviewer_groups_groups = reviewer
+        if isinstance(desk.manager_groups,basestring):
+            manager = desk.manager_groups.split(',') or []
+            desk.manager_groups = manager
