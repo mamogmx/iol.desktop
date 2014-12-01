@@ -7,7 +7,7 @@ default_profile = 'profile-iol.desktop:default'
 logger = logging.getLogger('iol.desktop')
 
 def update_groups(setup):
-    setup.runImportStepFromProfile(default_profile, 'groups')
+    #setup.runImportStepFromProfile(default_profile, 'groups')
     catalog = api.portal.get_tool('portal_catalog')
     brains = catalog(portal_type='pg_desktop')
     for brain in brains:
