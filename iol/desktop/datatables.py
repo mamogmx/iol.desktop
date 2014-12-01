@@ -17,7 +17,7 @@ def array_intersect(key,v):
     value = list()
     for vv in v['value']:
         value.append("'%s'::%s" %(vv,v['type']))
-    return "((%s) && ARRAY[%s])" %(key,",".join(value))
+    return "((%s)::%s && ARRAY[%s])" %(key,v['type'],",".join(value))
 
 options = {
     'gt' : greaterthen,
