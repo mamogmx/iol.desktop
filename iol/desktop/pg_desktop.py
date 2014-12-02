@@ -23,6 +23,7 @@ from Products.CMFCore.utils import getToolByName
 import simplejson as json
 import sqlalchemy as sql
 import zope
+from Products.CMFCore.CMFBTreeFolder import manage_addCMFBTreeFolder
 
 from iol.desktop.datatables import pgDataTables
 
@@ -58,6 +59,9 @@ class pg_desktop(Container):
     grok.implements(Ipg_desktop)
     security = ClassSecurityInfo()
     # Add your class methods and properties here
+    def __init__(self):
+        manage_addCMFBTreeFolder(self, id='resources')
+
     def getFields(self):
         results = []
         portal_catalog = api.portal.get_tool(name='portal_catalog')

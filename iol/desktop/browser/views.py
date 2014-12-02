@@ -117,6 +117,7 @@ class pgsearch(BrowserView):
                 print str(e)
                 data=dict()
             data['id'] = r['id']
+            data['review_state'] = r['review_state']
             data['plominodb'] = r['plominodb']
             result['aaData'].append(data)
         result['iTotalDisplayRecords'] = totali
