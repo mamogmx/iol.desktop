@@ -26,14 +26,10 @@ def transformDate(obj):
     res = dict()
     for k,v in obj.iteritems():
         try:
-            d = datetime.datetime.strptime(v,'%Y-%m-%dT%H:%M:%S').strftime('%d/%m/%Y')
+            d = parse(v,ignoretz=True).strftime('%d/%m/%Y')
             obj[k] = d
         except:
-            try:
-                d = parse(v,ignoretz=True).strftime('%d/%m/%Y')
-                obj[k] = d
-            except:
-                obj[k] = v  
+            obj[k] = v  
     return obj   
         
 class pgsearch(BrowserView):
@@ -119,7 +115,9 @@ class pgsearch(BrowserView):
             data['id'] = r['id']
             data['review_state'] = r['review_state']
             data['plominodb'] = r['plominodb']
+           
             result['aaData'].append(data)
+        
         result['iTotalDisplayRecords'] = totali
 
         return result

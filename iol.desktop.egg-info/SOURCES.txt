@@ -18,5 +18,7 @@ iol/desktop/interfaces.py
 iol/desktop/pg_desktop.py
 iol/desktop/pg_search_field.py
 iol/desktop/tests.py
+iol/desktop/upgrades.py
+iol/desktop/vocabularies.py
 iol/desktop/browser/__init__.py
 iol/desktop/browser/views.py
