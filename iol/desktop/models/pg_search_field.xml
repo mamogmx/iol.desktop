@@ -19,13 +19,7 @@
     <field name="field_type" type="zope.schema.Choice">
         <description>Search Field Type</description>
       <title>Field Type</title>
-      <values>
-        <element>search_text</element>
-        <element>search_number</element>
-        <element>search_date</element>
-        <element>search_list</element>
-        <element>search_check</element>
-      </values>
+      <source>iol.desktop.vocabularies.field_type</source>
     </field>
     <field name="search_val" type="zope.schema.Text">
       <description>It must be a list</description>

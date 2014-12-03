@@ -13,6 +13,7 @@
   <property name="filter_content_types">True</property>
   <property name="allowed_content_types">
 	<element value="pg_search_field"/>
+    <element value="view_field"/>
   </property>
   <property name="allow_discussion">False</property>
 

@@ -1,0 +1,49 @@
+<?xml version="1.0" ?>
+<model xmlns:security="http://namespaces.plone.org/supermodel/security" xmlns:form="http://namespaces.plone.org/supermodel/form" xmlns:marshal="http://namespaces.plone.org/supermodel/marshal" xmlns="http://namespaces.plone.org/supermodel/schema">
+  <schema>
+    <field name="mDataProp" type="zope.schema.TextLine">
+      <title>Data</title>
+      <description>Data</description>
+      <required>True</required>
+    </field>
+    <field name="sTitle" type="zope.schema.TextLine">
+      <title>Title</title>
+      <description>Title</description>
+      <required>True</required>
+    </field>
+    <field name="sType" type="zope.schema.Choice">
+      <title>Type</title>
+      <description>Type</description>
+      <source>iol.desktop.vocabularies.view_type</source>
+    </field>
+    <field name="sClass" type="zope.schema.TextLine">
+      <title>Class Name</title>
+      <description>Class Name</description>
+      <required>False</required>
+    </field>
+    <field name="sDefaultContent" type="zope.schema.TextLine">
+      <title>Default Content</title>
+      <description>Default Content</description>
+      <required>False</required>
+    </field>
+    <field name="sWidth" type="zope.schema.TextLine">
+      <title>Width</title>
+      <description>Width</description>
+      <required>False</required>
+    </field>
+    <field name="bSortable" type="zope.schema.Choice">
+      <title>Sortable</title>
+      <description>Sortable</description>
+      <required>True</required>
+      <source>iol.desktop.vocabularies.yes_no</source>
+      <default>0</default>
+    </field>
+    <field name="bVisible" type="zope.schema.Choice">
+      <title>Visible</title>
+      <description>Visible</description>
+      <required>True</required>
+      <source>iol.desktop.vocabularies.yes_no</source>
+    </field>
+
+  </schema>
+</model>
