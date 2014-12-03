@@ -6,7 +6,7 @@
  <property name="icon_expr">string:${portal_url}/document_icon.png</property>
  <property name="factory">view_field</property>
  <property
-    name="add_view_expr">string:${folder_url}/++add++pg_search_field</property>
+    name="add_view_expr">string:${folder_url}/++add++view_field</property>
  <property name="link_target"></property>
  <property name="immediate_view">view</property>
  <property name="global_allow">False</property>
