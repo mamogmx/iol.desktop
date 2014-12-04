@@ -11,3 +11,10 @@ i.linkable{
 	cursor: pointer; 
 	cursor: hand;
 }
+.control-label:{
+    font-weight:bold;
+}
+
+.bootstrap-search{
+    font-size:13px;
+}
