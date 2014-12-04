@@ -29,7 +29,7 @@
       <description>The initial Map zoom level. Required</description>
       <required>True</required>
     </field>
-    <field name="zoomControl" type="zope.schema.Boolean">
+    <field name="zoomControl" type="zope.schema.Bool">
       <title>Zoom Control</title>
       <description>The enabled/disabled state of the Zoom control.</description>
       <required>True</required>

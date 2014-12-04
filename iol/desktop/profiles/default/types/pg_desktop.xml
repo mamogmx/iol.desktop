@@ -14,6 +14,7 @@
   <property name="allowed_content_types">
 	<element value="pg_search_field"/>
     <element value="view_field"/>
+	<element value="google_map"/>
   </property>
   <property name="allow_discussion">False</property>
 

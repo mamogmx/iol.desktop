@@ -24,6 +24,7 @@ import simplejson as json
 import sqlalchemy as sql
 import zope
 from Products.CMFCore.CMFBTreeFolder import manage_addCMFBTreeFolder
+from interfaces import IMap
 
 class Google_Map(Container):
     grok.implements(IMap)
