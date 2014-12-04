@@ -28,7 +28,7 @@
     </field>
     <field name="sWidth" type="zope.schema.TextLine">
       <title>Width</title>
-      <description>Width</description>
+      <description>Width %</description>
       <required>False</required>
     </field>
     <field name="bSortable" type="zope.schema.Choice">
@@ -44,6 +44,11 @@
       <required>True</required>
       <source>iol.desktop.vocabularies.yes_no</source>
     </field>
-
+    <field name="viewOrder" type="zope.schema.Int">
+      <title>Order</title>
+      <description>Order</description>
+      <required>False</required>
+      <default>1</default>
+    </field>
   </schema>
 </model>

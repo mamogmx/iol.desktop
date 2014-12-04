@@ -11,4 +11,5 @@
   <object name="view_field" meta_type="Dexterity FTI"/>
   <object name="pg_search_field" meta_type="Dexterity FTI"/>
   <object name="pg_desktop" meta_type="Dexterity FTI" />
+  <object name="google_map" meta_type="Dexterity FTI"/>
 </object>

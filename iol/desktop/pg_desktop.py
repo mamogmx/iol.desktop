@@ -59,7 +59,8 @@ class pg_desktop(Container):
     grok.implements(Ipg_desktop)
     security = ClassSecurityInfo()
     # Add your class methods and properties here
-    def __init__(self):
+    def __init__(self,oid):
+        Container.__init__(self,oid)
         manage_addCMFBTreeFolder(self, id='resources')
 
     def getFields(self):
@@ -98,7 +99,16 @@ class pg_desktop(Container):
             )
             results.append(obj)
         return results
-       
+
+    def getViewFields(self):
+        results = []
+        portal_catalog = api.portal.get_tool(name='portal_catalog')
+        current_path = "/".join(self.getPhysicalPath())
+
+        brains = portal_catalog(portal_type="view_field",
+                                path=current_path)
+        return results
+
     def loadResources(self):
         result = dict(
             css = ['/++resource++iol.desktop/bootstrap.css','/++resource++iol.desktop/bootstrap-responsive.css','/++resource++iol.desktop/bootstrap.dataTables.css','/++resource++iol.desktop/desktop.css'],

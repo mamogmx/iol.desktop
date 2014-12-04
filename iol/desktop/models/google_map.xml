@@ -1,0 +1,38 @@
+<?xml version="1.0" ?>
+<model xmlns:security="http://namespaces.plone.org/supermodel/security" xmlns:form="http://namespaces.plone.org/supermodel/form" xmlns:marshal="http://namespaces.plone.org/supermodel/marshal" xmlns="http://namespaces.plone.org/supermodel/schema">
+  <schema>
+
+    <field name="mapTypeId" type="zope.schema.Choice">
+      <title>Map Type</title>
+      <description>The initial Map mapTypeId. Defaults to ROADMAP</description>
+	  <default>ROADMAP</default>
+	  <source>iol.desktop.gmap_vocabularies.map_type</source>
+      <required>True</required>
+    </field>
+    <field name="center" type="zope.schema.TextLine">
+      <title>Center</title>
+      <description>The initial Map center ( e.g [x,y])</description>
+      <required>True</required>
+    </field>
+    <field name="minZoom" type="zope.schema.Int">
+      <title>Min Zoom</title>
+      <description>The minimum zoom level which will be displayed on the map. If omitted, or set to null, the minimum zoom from the current map type is used instead.</description>
+      <required>False</required>
+    </field>
+    <field name="maxZoom" type="zope.schema.Int">
+      <title>Max Zoom</title>
+      <description>The maximum zoom level which will be displayed on the map. If omitted, or set to null, the maximum zoom from the current map type is used instead.</description>
+      <required>False</required>
+    </field>
+    <field name="zoom" type="zope.schema.Int">
+      <title>Zoom</title>
+      <description>The initial Map zoom level. Required</description>
+      <required>True</required>
+    </field>
+    <field name="zoomControl" type="zope.schema.Boolean">
+      <title>Zoom Control</title>
+      <description>The enabled/disabled state of the Zoom control.</description>
+      <required>True</required>
+    </field>
+  </schema>
+</model>
