@@ -33,6 +33,6 @@ class IMap(form.Schema):
     """
     form.model("models/google_map.xml")
 
-class IMapLayer(Interfaces):
+class IMapLayer(Interface):
     """Marker Interfaces for IMapLayer
     """
