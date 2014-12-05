@@ -32,6 +32,5 @@ class Google_Map(Container):
     # Add your class methods and properties here
 
 
-class olLayer(DexterityContent,form.Schema):
+class olLayer(DexterityContent):
     grok.implements(IMapLayer)
-    form.model('model/ol_layer.xml')
