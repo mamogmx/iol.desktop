@@ -30,5 +30,10 @@
         <description/>
         <required>False</required>
     </field>
+		<field name="settings" type="zope.schema.Text">
+      <title>Miscellaneous Settings</title>
+      <description>Miscellaneous Settings as json string (data-settings)</description>
+      <required>False</required>
+    </field>
   </schema>
 </model>
