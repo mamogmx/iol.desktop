@@ -32,3 +32,7 @@ class IMap(form.Schema):
     """"Marker Interface for Imap
     """
     form.model("models/google_map.xml")
+
+class IMapLayer(Interfaces):
+    """Marker Interfaces for IMapLayer
+    """

@@ -6,7 +6,7 @@ from zope.interface import invariant, Invalid
 from zope.schema.interfaces import IContextSourceBinder
 from zope.schema.vocabulary import SimpleVocabulary, SimpleTerm
 
-from plone.dexterity.content import Container
+from plone.dexterity.content import Container,DexterityContent
 
 from plone.directives import dexterity, form
 from plone.app.textfield import RichText
@@ -24,10 +24,14 @@ import simplejson as json
 import sqlalchemy as sql
 import zope
 from Products.CMFCore.CMFBTreeFolder import manage_addCMFBTreeFolder
-from interfaces import IMap
+from interfaces import IMap,IMapLayer
 
 class Google_Map(Container):
     grok.implements(IMap)
     security = ClassSecurityInfo()
     # Add your class methods and properties here
 
+
+class olLayer(DexterityContent,form.Schema):
+    grok.implements(IMapLayer)
+    form.model('model/ol_layer.xml')

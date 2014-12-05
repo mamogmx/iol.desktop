@@ -1,0 +1,34 @@
+<?xml version="1.0" ?>
+<model xmlns:security="http://namespaces.plone.org/supermodel/security" xmlns:form="http://namespaces.plone.org/supermodel/form" xmlns:marshal="http://namespaces.plone.org/supermodel/marshal" xmlns="http://namespaces.plone.org/supermodel/schema">
+  <schema>
+
+    <field name="layer_type" type="zope.schema.Choice">
+      <title>Layer Type</title>
+      <description>Layer Type</description>
+	  <default>WMTS</default>
+	  <source>iol.desktop.gmap_vocabularies.layer_type</source>
+      <required>True</required>
+    </field>
+    <field name="layer_name" type="zope.schema.TextLine">
+      <title>Layer Name</title>
+      <description>Layer Name</description>
+      <required>True</required>
+    </field>
+    <field name="layer_label" type="zope.schema.TextLine">
+      <title>Layer Label</title>
+      <description>Layer Label</description>
+      <required>False</required>
+    </field>
+    <field name="isBaseLayer" type="zope.schema.Bool">
+      <title>Base Layer</title>
+      <description>Whether or not the layer is a base layer.  This should be set individually by all subclasses.  Default is false</description>
+      <required>False</required>
+      <default>False</default>
+    </field>
+    <field name="service_url" type="zope.schema.TextLine">
+        <title>Service Url</title>
+        <description/>
+        <required>False</required>
+    </field>
+  </schema>
+</model>
