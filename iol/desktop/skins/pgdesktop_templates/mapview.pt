@@ -1,7 +1,7 @@
-<div id="olMap" tal:attributes="data-map-type: map/mapTypeId;data-center: map/center;data-zoom: map/zoom;data-min-zoom: map/minZoom;data-max-zoom: map/maxZoom;data-settings map/settings "/>
+<div id="olMap" tal:attributes="data-map-type map/mapTypeId;data-center map/center;data-zoom map/zoom;data-min-zoom map/minZoom;data-max-zoom map/maxZoom;data-settings map/settings "></div>
 <tal:loop tal:repeat="layer layers">
 <label>
-	<input name="layers" type="checkbox" tal:attributes="data-layer-name: layer/layer_name;data-layer-type: layer/layer_type;data-isBaseLayer: layer/isBaseLayer;data-settings: layer/settings;"/>
+	<input name="layers" type="checkbox" tal:attributes="data-layer-name layer/layer_name;data-layer-type layer/layer_type;data-isBaseLayer layer/isBaseLayer;data-settings layer/settings;"/>
 	<span tal:content="layer/layer_title"/> 
 </label><br/>
 </tal:loop>
