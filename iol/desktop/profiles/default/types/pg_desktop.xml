@@ -7,7 +7,7 @@
   <property name="title" i18n:translate="">pg_desktop</property>
   <property name="description"
     i18n:translate="">Desktop for IOL Application connected with Postgres Database</property>
-  <property name="icon_expr">string:${portal_url}/folder_icon.png</property>
+  <property name="icon_expr">string:${portal_url}/++resource++iol.desktop/images/postgres_16.png</property>
   <property name="factory">iol.desktop.pg_desktop</property>
   <property name="global_allow">True</property>
   <property name="filter_content_types">True</property>
