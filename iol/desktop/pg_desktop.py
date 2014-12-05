@@ -59,8 +59,8 @@ class pg_desktop(Container):
     grok.implements(Ipg_desktop)
     security = ClassSecurityInfo()
     # Add your class methods and properties here
-    def __init__(self,oid):
-        Container.__init__(self,oid)
+    def __init__(self):
+        Container.__init__(self)
         manage_addCMFBTreeFolder(self, id='resources')
 
     def getFields(self):
@@ -131,7 +131,18 @@ class pg_desktop(Container):
             template_folder = getToolByName(self, 'portal_skins')
             template_folder = template_folder['pgdesktop_templates']
             return template_folder[id]
-
+            
+    def getMap(self):
+        if self.desktop_with_map != 'nomap' and self.map_name:
+            portal_catalog = api.portal.get_tool(name='portal_catalog')
+            current_path = "/".join(self.getPhysicalPath())
+            brains = portal_catalog(portal_type="google_map",id = self.map_name, path=current_path)
+            
+            map = brains[0].getObject()
+        else:
+            map = None
+        return map
+        
     def displayLayout(self, layout):
         def top_layout(obj):
             if obj.top_slot:
@@ -175,6 +186,11 @@ class pg_desktop(Container):
             html = pt.pt_render(extra_context=fld)
             html_content = html_content.replace(fieldblock, html)
         return html_content
+        
+    def getConn(self):
+        engine = sql.create_engine(self.conn_string)
+        connection = engine.connect()
+        return connection
 
 # View class
 # The view will automatically use a similarly named template in

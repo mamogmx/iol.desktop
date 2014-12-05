@@ -1,0 +1,7 @@
+<div id="olMap" tal:attributes="data-map-type: map/mapTypeId;data-center: map/center;data-zoom: map/zoom;data-min-zoom: map/minZoom;data-max-zoom: map/maxZoom; "/>
+<tal:loop tal:repeat="layer layers">
+<label>
+	<input name="layers" type="checkbox" tal:attributes="data-layer-name: layer/layer_name;data-layer-type: layer/layer_type;data-isBaseLayer: layer/isBaseLayer"data-layer-name="grp_rete_stradale5" data-layer-type="WMTS"/>
+	<span tal:content="layer/layer_title"/> 
+</label><br/>
+</tal:loop>

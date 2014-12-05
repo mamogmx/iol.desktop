@@ -14,9 +14,9 @@
       <description>Layer Name</description>
       <required>True</required>
     </field>
-    <field name="layer_label" type="zope.schema.TextLine">
-      <title>Layer Label</title>
-      <description>Layer Label</description>
+    <field name="layer_title" type="zope.schema.TextLine">
+      <title>Layer Title</title>
+      <description>Layer Title</description>
       <required>False</required>
     </field>
     <field name="isBaseLayer" type="zope.schema.Bool">

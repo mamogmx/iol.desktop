@@ -1,10 +1,12 @@
 <?xml version="1.0" ?>
 <model xmlns:security="http://namespaces.plone.org/supermodel/security" xmlns:form="http://namespaces.plone.org/supermodel/form" xmlns:marshal="http://namespaces.plone.org/supermodel/marshal" xmlns="http://namespaces.plone.org/supermodel/schema">
   <schema>
-    <field name="mDataProp" type="zope.schema.TextLine">
-      <title>Data</title>
-      <description>Data</description>
+	
+    <field name="mDataProp" type="zope.schema.Choice">
+      <title>Data Properties</title>
+      <description>Data Properties</description>
       <required>True</required>
+	  <source>iol.desktop.vocabularies.field_list</source>
     </field>
     <field name="sTitle" type="zope.schema.TextLine">
       <title>Title</title>

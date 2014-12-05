@@ -30,7 +30,38 @@ class Google_Map(Container):
     grok.implements(IMap)
     security = ClassSecurityInfo()
     # Add your class methods and properties here
-
-
+    def __init__(self):
+        Container.__init__(self)
+        
+    def getTemplate(self,id):
+        current_path = "/".join(self.getPhysicalPath())
+        if id in current_path:
+            return current_path[id]
+        else:
+            template_folder = getToolByName(self, 'portal_skins')
+            if 'custom' in template_folder.keys() and id in template_folder['custom'].keys():
+                return template_folder['custom'][id]
+            else:
+                return template_folder['pgdesktop_templates'][id]
+            
+    def getLayout(self):
+        pt = self.getTemplate('mapview')
+        map = dict(map = self, layers = self.getLayers())
+        return pt.pt_render(extra_context=map)
+        
+    def getLayers(self):
+        result = []
+        catalog = getToolByName(self, 'portal_catalog')
+        folder_path = '/'.join(self.getPhysicalPath())
+        for br in catalog(portal_type='ol_layer',path={'query': folder_path, 'depth': 1}):
+            l = br.getObject()
+            result.append(l)
+        return result
+        
+      
 class olLayer(DexterityContent):
     grok.implements(IMapLayer)
+    security = ClassSecurityInfo()
+    # Add your class methods and properties here
+    
+    

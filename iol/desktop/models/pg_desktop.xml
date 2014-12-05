@@ -87,6 +87,11 @@ aoColumns:[
                   <title>Map Position</title>
                   <source>iol.desktop.vocabularies.map_position</source>
 			</field>
+			<field name="map_name" type="zope.schema.Choice">
+				  <description>Map Name</description>
+                  <title>Map Name</title>
+                  <source>iol.desktop.vocabularies.map_list</source>
+			</field>
             <field name="mapwidth" type="zope.schema.TextLine">
 				<description/>
 				<title>Map Width</title>
