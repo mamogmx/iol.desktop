@@ -36,4 +36,4 @@ class IMap(form.Schema):
 class IMapLayer(form.Schema):
     """Marker Interfaces for IMapLayer
     """
-    form.model('model/ol_layer.xml')
+    form.model('models/ol_layer.xml')
