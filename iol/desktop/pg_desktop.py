@@ -6,6 +6,7 @@ from plone.dexterity.content import Container
 from plone.namedfile.interfaces import IImageScaleTraversable
 
 from plone import api
+from plone.directives import dexterity, form
 from iol.desktop import MessageFactory as _
 from Products.CMFCore.utils import getToolByName
 import simplejson as json
