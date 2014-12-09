@@ -1,14 +1,14 @@
 from five import grok
 from AccessControl import ClassSecurityInfo
-from plone.dexterity.content import IDexterityContent
+from plone.dexterity.content import DexterityContent
 from plone import api
 from interfaces import IColumn
 
-class dt_column(IDexterityContent):
+class dt_column(DexterityContent):
     grok.implements(IColumn)
     security = ClassSecurityInfo()
     def __init__(self):
-        IDexterityContent.__init__(IDexterityContent)
+        IDexterityContent.__init__(DexterityContent)
         trg = self.aq_parent['columns']
         api.content.move(
             source=self,
