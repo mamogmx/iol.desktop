@@ -4,7 +4,7 @@ from plone import api
 class dt_column(IDexterityContent):
 
     def __init__(self):
-        IDexterityContent.__init__(self)
+        IDexterityContent.__init__(IDexterityContent)
         trg = self.aq_parent['columns']
         api.content.move(
             source=self,
