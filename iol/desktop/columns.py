@@ -8,7 +8,7 @@ class dt_column(DexterityContent):
     grok.implements(IColumn)
     security = ClassSecurityInfo()
     def __init__(self):
-        IDexterityContent.__init__(DexterityContent)
+        DexterityContent.__init__(DexterityContent)
         trg = self.aq_parent['columns']
         api.content.move(
             source=self,
