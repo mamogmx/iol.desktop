@@ -1,21 +1,9 @@
 from five import grok
 from AccessControl import ClassSecurityInfo
-from z3c.form import group, field
-from zope import schema
-from zope.interface import invariant, Invalid
-from zope.schema.interfaces import IContextSourceBinder
-from zope.schema.vocabulary import SimpleVocabulary, SimpleTerm
 
 from plone.dexterity.content import Container
 
-from plone.directives import dexterity, form
-from plone.app.textfield import RichText
-from plone.namedfile.field import NamedImage, NamedFile
-from plone.namedfile.field import NamedBlobImage, NamedBlobFile
 from plone.namedfile.interfaces import IImageScaleTraversable
-
-from z3c.relationfield.schema import RelationList, RelationChoice
-from plone.formwidget.contenttree import ObjPathSourceBinder
 
 from plone import api
 from iol.desktop import MessageFactory as _
@@ -41,14 +29,6 @@ class Ipg_desktop(form.Schema, IImageScaleTraversable):
     # models/pg_desktop.xml to define the content type.
 
     form.model("models/pg_desktop.xml")
-    @zope.interface.invariant
-    def isValidConnectionString(desktop):
-        try:
-            engine = sql.create_engine(desktop.conn_string)
-            connection = engine.connect()
-        except:
-            pass
-            raise zope.interface.Invalid("Not a valid connection string '%s'" %desktop.conn_string)
 
 # Custom content-type class; objects created for this content type will
 # be instances of this class. Use this class to add content-type specific
@@ -59,9 +39,25 @@ class pg_desktop(Container):
     grok.implements(Ipg_desktop)
     security = ClassSecurityInfo()
     # Add your class methods and properties here
+
     def __init__(self):
-        Container.__init__(self)
+        Container.__init__(Container)
         manage_addCMFBTreeFolder(self, id='resources')
+        manage_addCMFBTreeFolder(self, id='columns')
+
+    def loadResources(self):
+        result = dict(
+            css = ['/++resource++iol.desktop/bootstrap.css','/++resource++iol.desktop/bootstrap-responsive.css','/++resource++iol.desktop/bootstrap.dataTables.css','/++resource++iol.desktop/desktop.css'],
+            js = ['/++resource++iol.desktop/bootstrap.min.js','/++resource++iol.desktop/bootstrap.dataTables.js','/++resource++iol.desktop/search.pgdesktop.js']
+        )
+        if 'resources' in self.keys():
+            res = self['resources']
+            for f in res.keys():
+                if f.endswith('.css'):
+                    result['css'].append('resources/%s' %f)
+                elif f.endswith('.js'):
+                    result['js'].append('resources/%s' %f)
+        return result
 
     def getFields(self):
         results = []
@@ -100,28 +96,16 @@ class pg_desktop(Container):
             results.append(obj)
         return results
 
-    def getViewFields(self):
+    def getDTColumns(self):
         results = []
         portal_catalog = api.portal.get_tool(name='portal_catalog')
         current_path = "/".join(self.getPhysicalPath())
 
-        brains = portal_catalog(portal_type="view_field",
-                                path=current_path)
+        brains = portal_catalog(path=current_path, id='columns')
+        for i in brains[0].getObject().items():
+            cols = dict(i)
+            results.append(cols)
         return results
-
-    def loadResources(self):
-        result = dict(
-            css = ['/++resource++iol.desktop/bootstrap.css','/++resource++iol.desktop/bootstrap-responsive.css','/++resource++iol.desktop/bootstrap.dataTables.css','/++resource++iol.desktop/desktop.css'],
-            js = ['/++resource++iol.desktop/bootstrap.min.js','/++resource++iol.desktop/bootstrap.dataTables.js','/++resource++iol.desktop/search.pgdesktop.js']
-        )
-        if 'resources' in self.keys():
-            res = self['resources']
-            for f in res.keys():
-                if f.endswith('.css'):
-                    result['css'].append('resources/%s' %f)
-                elif f.endswith('.js'):
-                    result['js'].append('resources/%s' %f)
-        return result
             
     def getTemplate(self,id):
         current_path = "/".join(self.getPhysicalPath())

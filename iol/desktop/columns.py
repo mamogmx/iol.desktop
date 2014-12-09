@@ -1,0 +1,16 @@
+from plone.dexterity.content import IDexterityContent
+from plone import api
+
+class dt_column(IDexterityContent):
+
+    def __init__(self):
+        IDexterityContent.__init__(self)
+        trg = self.aq_parent['columns']
+        api.content.move(
+            source=self,
+            target=trg,
+            safe_id=True)
+
+    def __iter__(self):
+        for attr, value in self.__dict__.iteritems():
+            yield attr, value

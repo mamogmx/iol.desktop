@@ -37,3 +37,10 @@ class IMapLayer(form.Schema):
     """Marker Interfaces for IMapLayer
     """
     form.model('models/ol_layer.xml')
+
+class Icolumns(form.Schema):
+    """
+    Interfaces for columns
+    """
+
+    form.model("models/dt_column.xml")

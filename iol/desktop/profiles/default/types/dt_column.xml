@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
-<object name="pg_search_field" meta_type="Dexterity FTI" i18n:domain="plone"
+<object name="dt_column" meta_type="Dexterity FTI" i18n:domain="plone"
    xmlns:i18n="http://xml.zope.org/namespaces/i18n">
- <property name="title" i18n:translate="">view_field</property>
- <property name="description" i18n:translate="">None</property>
+ <property name="title" i18n:translate="">DT Columns</property>
+ <property name="description" i18n:translate="">DataTables Column</property>
  <property name="icon_expr">string:${portal_url}/document_icon.png</property>
- <property name="factory">view_field</property>
+ <property name="factory">iol.desktop.dt_column</property>
  <property
     name="add_view_expr">string:${folder_url}/++add++view_field</property>
  <property name="link_target"></property>
@@ -19,8 +19,8 @@
  </property>
  <property name="default_view_fallback">False</property>
  <property name="add_permission">cmf.AddPortalContent</property>
- <property name="schema">iol.desktop.view_field.Iview_field</property>
- <property name="klass">plone.dexterity.content.DexterityContent</property>
+ <property name="schema">iol.desktop.interfaces.IColumn</property>
+ <property name="klass">iol.desktop.column.dt_column</property>
  <property name="behaviors">
   <element value="plone.app.dexterity.behaviors.metadata.IDublinCore"/>
  </property>
