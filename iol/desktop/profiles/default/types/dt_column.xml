@@ -20,7 +20,7 @@
  <property name="default_view_fallback">False</property>
  <property name="add_permission">cmf.AddPortalContent</property>
  <property name="schema">iol.desktop.interfaces.IColumn</property>
- <property name="klass">iol.desktop.column.dt_column</property>
+ <property name="klass">iol.desktop.columns.dt_column</property>
  <property name="behaviors">
   <element value="plone.app.dexterity.behaviors.metadata.IDublinCore"/>
  </property>
