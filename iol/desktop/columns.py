@@ -1,6 +1,5 @@
 from five import grok
 from AccessControl import ClassSecurityInfo
-from Acquisition import aq_parent,aq_inner,aq_self
 from plone.dexterity.content import DexterityContent
 from plone import api
 from interfaces import IColumn
@@ -11,7 +10,7 @@ class dt_column(DexterityContent):
     security = ClassSecurityInfo()
     def __init__(self):
         DexterityContent.__init__(self)
-        trg = aq_inner.aq_parent.aq_self
+        trg = self.getParentNode()
 
         api.content.move(
             source=self,
