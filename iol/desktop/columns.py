@@ -24,7 +24,7 @@ class dt_column(DexterityContent):
 
 @grok.subscribe(dt_column, IObjectAddedEvent)
 def moveObj(column, event):
-    container = column.newParent
+    container = column.aq_parent
     api.content.move(
         source=column,
         target=container['columns'],
