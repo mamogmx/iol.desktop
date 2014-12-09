@@ -42,7 +42,7 @@ class pg_desktop(Container):
     # Add your class methods and properties here
 
     def __init__(self):
-        Container.__init__(Container)
+        Container.__init__(self)
         manage_addCMFBTreeFolder(self, id='resources')
         manage_addCMFBTreeFolder(self, id='columns')
 
