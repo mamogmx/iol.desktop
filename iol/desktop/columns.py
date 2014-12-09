@@ -1,8 +1,10 @@
 from five import grok
 from AccessControl import ClassSecurityInfo
+from Acquisition import aq_parent
 from plone.dexterity.content import DexterityContent
 from plone import api
 from interfaces import IColumn
+
 
 class dt_column(DexterityContent):
     grok.implements(IColumn)
