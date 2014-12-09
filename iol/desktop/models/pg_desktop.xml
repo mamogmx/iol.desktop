@@ -91,6 +91,7 @@ aoColumns:[
 				  <description>Map Name</description>
                   <title>Map Name</title>
                   <source>iol.desktop.vocabularies.map_list</source>
+                  <required>False</required>
 			</field>
             <field name="mapwidth" type="zope.schema.TextLine">
 				<description/>
