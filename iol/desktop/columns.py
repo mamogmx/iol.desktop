@@ -1,8 +1,10 @@
 from plone.dexterity.content import IDexterityContent
 from plone import api
+from interfaces import IColumn
 
 class dt_column(IDexterityContent):
-
+    grok.implements(IColumn)
+    security = ClassSecurityInfo()
     def __init__(self):
         IDexterityContent.__init__(IDexterityContent)
         trg = self.aq_parent['columns']
