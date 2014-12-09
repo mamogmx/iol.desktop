@@ -27,8 +27,8 @@ setup(name='iol.desktop',
       install_requires=[
           'setuptools',
           'plone.app.dexterity [grok, relations]',
-          'plone.app.relationfield',
-          'plone.namedfile [blobs]',
+          'collective.js.datatables',
+          'Products.TinyMCE'
           # -*- Extra requirements: -*-
       ],
       entry_points="""

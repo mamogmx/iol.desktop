@@ -3,39 +3,13 @@
        xmlns:form="http://namespaces.plone.org/supermodel/form">
     
     <schema>
-		<field name="js_settings" type="zope.schema.Text">
-			<description/>
-			<title>Javascript Settings</title>
-            <default>
-aoColumns:[
-    {mDataProp:'id',sSortable:false,sVisible:false},
-]
-            </default>
-		</field>
 
+         <field name="html_slot" type="plone.app.textfield.RichText">
+            <description/>
+            <title>Page Definition</title>
+            <required>False</required>
+         </field>
 
-        <fieldset name="html_slots" label="Slots" description="Html to render in the page">
-             <field name="top_slot" type="plone.app.textfield.RichText">
-			    <description/>
-			    <title>Top Slot</title>
-                <required>False</required>
-		     </field>
-             <field name="right_slot" type="plone.app.textfield.RichText">
-			    <description/>
-			    <title>Right Slot</title>
-                <required>False</required>
-		     </field>
-             <field name="bottom_slot" type="plone.app.textfield.RichText">
-			    <description/>
-			    <title>Bottom Slot</title>
-                <required>False</required>
-		     </field>
-             <field name="left_slot" type="plone.app.textfield.RichText">
-			    <description/>
-			    <title>Left Slot</title>
-                <required>False</required>
-		     </field>
-        </fieldset>
         <fieldset name="db_settings" label="Database Settings" description="Database Settings (connection string,schema and table)">
 			<field name="conn_string" type="zope.schema.TextLine">
 				<description/>
@@ -86,6 +60,7 @@ aoColumns:[
 				  <description>Map Position</description>
                   <title>Map Position</title>
                   <source>iol.desktop.vocabularies.map_position</source>
+                  <required>False</required>
 			</field>
 			<field name="map_name" type="zope.schema.Choice">
 				  <description>Map Name</description>

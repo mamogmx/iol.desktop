@@ -3,7 +3,6 @@ from AccessControl import ClassSecurityInfo
 
 from plone.dexterity.content import Container
 
-from plone.namedfile.interfaces import IImageScaleTraversable
 
 from plone import api
 from plone.directives import dexterity, form
@@ -14,12 +13,11 @@ import sqlalchemy as sql
 import zope
 from Products.CMFCore.CMFBTreeFolder import manage_addCMFBTreeFolder
 
-from iol.desktop.datatables import pgDataTables
 
 # Interface class; used to define content-type schema.
 
 
-class Ipg_desktop(form.Schema, IImageScaleTraversable):
+class Ipg_desktop(form.Schema):
     """
     Desktop for IOL Application connected with Postgres Database
     """
@@ -99,13 +97,16 @@ class pg_desktop(Container):
 
     def getDTColumns(self):
         results = []
-        portal_catalog = api.portal.get_tool(name='portal_catalog')
-        current_path = "/".join(self.getPhysicalPath())
 
-        brains = portal_catalog(path=current_path, id='columns')
-        for i in brains[0].getObject().items():
-            cols = dict(i)
-            results.append(cols)
+        if self['columns'].keys():
+            for i in self['columns'].items():
+                cols = i[1].to_dict()
+                results.append(cols)
+        else:
+            from zope.globalrequest import getRequest
+            request = getRequest()
+            api.portal.show_message("No Datatables Columns defined.Please add some DT Columns",request,'warn')
+            request.RESPONSE.redirect("%s/++add++dt_column" % self.absolute_url())
         return results
             
     def getTemplate(self,id):
@@ -127,49 +128,30 @@ class pg_desktop(Container):
         else:
             map = None
         return map
-        
-    def displayLayout(self, layout):
-        def top_layout(obj):
-            if obj.top_slot:
-                return obj.top_slot.raw
-            else:
-                return ''
 
-        def bottom_layout(obj):
-            if obj.bottom_slot:
-                return obj.bottom_slot.raw
-            else:
-                return ''
+    def displayLayout(self):
 
-        def left_layout(obj):
-            if obj.left_slot:
-                return obj.left_slot.raw
-            else:
-                return ''
-
-        def right_layout(obj):
-            if obj.right_slot:
-                return obj.right_slot.raw
-            else:
-                return ''
-
-        option = {
-            'top_slot': top_layout,
-            'left_slot': left_layout,
-            'bottom_slot': bottom_layout,
-            'right_slot': right_layout
-        }
         fields = self.getFields()
-        if not layout in ('top_slot', 'bottom_slot', 'left_slot', 'right_slot'):
-            return ''
-        html_content = option[layout](self)
-        if not html_content:
-            return ''
+        cols = self.getDTColumns()
+
+        html_content = self.html_slot.raw
+
         for fld in fields:
             fieldblock = '<span class="desktopField">%s</span>' % fld['name']
             pt = self.getTemplate(fld['template'])
             html = pt.pt_render(extra_context=fld)
             html_content = html_content.replace(fieldblock, html)
+
+        dtblock = '<span class="desktopTable">Result Table</span>'
+        pt = self.getTemplate('resultTable')
+        html = pt.pt_render(extra_context=dict(cols=json.dumps(cols)))
+        html_content = html_content.replace(dtblock, html)
+
+        if self.desktop_with_map != 'nomap' and self.map_name:
+            mapblock = '<span class="desktopMap">%s</span>' % self.map_name
+            html = self.getMap().displayLayout()
+            html_content = html_content.replace(mapblock,html)
+
         return html_content
         
     def getConn(self):

@@ -1,0 +1,13 @@
+<table class="table table-striped table-bordered dataTable" id="resultTable"></table>
+<script type="text/javascript" tal:define="aoColumns cols"
+    tal:content="string:
+        var table = jQuery('#resultTable').dataTable({
+            bDeferRender: true,
+            bFilter: false,
+            bProcessing: true,
+            bServerSide: true,
+            sAjaxSource: 'pgsearch',
+            sServerMethod: 'POST',
+            aoColumns: ${aoColumns}
+        });
+"></script>

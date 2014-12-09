@@ -46,11 +46,11 @@
       <required>True</required>
       <source>iol.desktop.vocabularies.yes_no</source>
     </field>
-    <field name="viewOrder" type="zope.schema.Int">
-      <title>Order</title>
-      <description>Order</description>
+    <field name="mRender" type="zope.schema.TextLine">
+      <title>Render Function</title>
+      <description>Render Function</description>
       <required>False</required>
-      <default>1</default>
+
     </field>
   </schema>
 </model>

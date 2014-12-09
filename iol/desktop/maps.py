@@ -44,7 +44,7 @@ class Google_Map(Container):
             else:
                 return template_folder['pgdesktop_templates'][id]
             
-    def getLayout(self):
+    def displayLayout(self):
         pt = self.getTemplate('mapview')
         map = dict(map = self, layers = self.getLayers())
         return pt.pt_render(extra_context=map)
