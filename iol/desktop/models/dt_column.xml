@@ -9,8 +9,8 @@
 	  <source>iol.desktop.vocabularies.field_list</source>
     </field>
     <field name="sTitle" type="zope.schema.TextLine">
-      <title>Title</title>
-      <description>Title</description>
+      <title>Column Title</title>
+      <description>Column Title</description>
       <required>True</required>
     </field>
     <field name="sType" type="zope.schema.Choice">

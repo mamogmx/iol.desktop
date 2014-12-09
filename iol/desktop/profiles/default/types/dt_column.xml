@@ -31,8 +31,6 @@
   <property name="view_methods">
    <element value="view"/>
   </property>
-  <property name="default_view_fallback">False</property>
-  <property name="add_permission">cmf.AddPortalContent</property>
 
 
   <!-- Method aliases -->

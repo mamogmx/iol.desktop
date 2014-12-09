@@ -1,12 +1,12 @@
 from five import grok
 from AccessControl import ClassSecurityInfo
-from plone.dexterity.content import IDexterityContent
+from plone.dexterity.content import DexterityContent
 from plone import api
 from interfaces import IColumn
 from zope.lifecycleevent.interfaces import IObjectAddedEvent
 from Products.CMFCore.utils import getToolByName
 
-class dt_column(IColumn):
+class dt_column(DexterityContent):
     #grok.implements(IColumn)
     #security = ClassSecurityInfo()
     #def __init__(self):
