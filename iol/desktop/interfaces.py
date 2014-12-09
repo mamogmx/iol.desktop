@@ -38,7 +38,7 @@ class IMapLayer(form.Schema):
     """
     form.model('models/ol_layer.xml')
 
-class Icolumns(form.Schema):
+class IColumn(form.Schema):
     """
     Interfaces for columns
     """
