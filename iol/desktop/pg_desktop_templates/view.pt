@@ -36,8 +36,9 @@
 
 			<p class="documentDescription" tal:content="context/description" />
 			<div tal:replace="structure provider:plone.abovecontentbody" />
-			<div tal:replace="structure context/displayLayout"/>
-
+            <div id="desktop-object">
+			    <div tal:replace="structure context/displayLayout"/>
+            </div>
 
         <div tal:replace="structure provider:plone.belowcontentbody" />
 		</div>
