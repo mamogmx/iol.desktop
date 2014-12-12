@@ -3,7 +3,7 @@ from AccessControl import ClassSecurityInfo
 
 from plone.dexterity.content import Container
 
-
+import re
 from plone import api
 from plone.directives import dexterity, form
 from iol.desktop import MessageFactory as _
@@ -144,7 +144,11 @@ class pg_desktop(Container):
 
         dtblock = '<span class="desktopTable">Result Table</span>'
         pt = self.getTemplate('resultTable')
-        html = pt.pt_render(extra_context=dict(cols=json.dumps(cols)))
+        columns = json.dumps(cols)
+        m = re.findall('"mRender": "([A-z0-9_]+)"',columns)
+        for r in m:
+            columns.replace('"mRender": "%s"' % r,'"mRender": %s' % r )
+        html = pt.pt_render(extra_context=dict(cols=columns))
         html_content = html_content.replace(dtblock, html)
 
         if self.desktop_with_map != 'nomap' and self.map_name:
