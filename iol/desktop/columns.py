@@ -21,11 +21,11 @@ class dt_column(Item):
         if self.sClass:
             result['sClass'] = self.sClass
         if self.sDefaultContent:
-            result['sDefaultContent']=self.sDefaultContent
+            result['sDefaultContent'] = self.sDefaultContent
         if self.sWidth:
-            result['sWidth']=self.sWidth
+            result['sWidth'] = self.sWidth
         if self.mRender:
-            result['mRender']=self.mRender
+            result['mRender'] = self.mRender
         return result
 
 @grok.subscribe(dt_column, IObjectAddedEvent)
