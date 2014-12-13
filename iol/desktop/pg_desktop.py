@@ -42,7 +42,9 @@ class pg_desktop(Container):
     def __init__(self):
         Container.__init__(self)
         manage_addCMFBTreeFolder(self, id='resources')
-        self.invokeFactory('Folder', id='columns')
+        import pdb
+        pdb.set_trace()
+        #self.invokeFactory('Folder', id='columns')
         #manage_addCMFBTreeFolder(self, id='columns')
         #api.content.create(container=self, type='Folder', id='columns')
 
