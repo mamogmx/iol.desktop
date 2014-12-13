@@ -42,7 +42,8 @@ class pg_desktop(Container):
     def __init__(self):
         Container.__init__(self)
         manage_addCMFBTreeFolder(self, id='resources')
-        manage_addCMFBTreeFolder(self, id='columns')
+        #manage_addCMFBTreeFolder(self, id='columns')
+        api.content.create(container=self, type='Folder', id='columns')
 
     def loadResources(self):
         result = dict(
@@ -71,8 +72,8 @@ class pg_desktop(Container):
                 v = list()
                 lst = i.search_val.split(',')
                 for l in lst:
-                    (val,lbl) = l.split('|')
-                    v.append(dict(label=lbl,value=val))
+                    (val, lbl) = l.split('|')
+                    v.append(dict(label=lbl, value=val))
             except Exception as e:
                 
                 print str(e)
@@ -145,16 +146,16 @@ class pg_desktop(Container):
         dtblock = '<span class="desktopTable">Result Table</span>'
         pt = self.getTemplate('resultTable')
         columns = json.dumps(cols)
-        m = re.findall('"mRender": "([A-z0-9_]+)"',columns)
+        m = re.findall('"mRender": "([A-z0-9_]+)"', columns)
         for r in m:
-            columns.replace('"mRender": "%s"' % r,'"mRender": %s' % r )
+            columns.replace('"mRender": "%s"' % r,'"mRender": %s' % r)
         html = pt.pt_render(extra_context=dict(cols=columns))
         html_content = html_content.replace(dtblock, html)
 
         if self.desktop_with_map != 'nomap' and self.map_name:
             mapblock = '<span class="desktopMap">%s</span>' % self.map_name
             html = self.getMap().displayLayout()
-            html_content = html_content.replace(mapblock,html)
+            html_content = html_content.replace(mapblock, html)
 
         return html_content
         
