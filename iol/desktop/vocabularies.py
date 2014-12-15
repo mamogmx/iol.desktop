@@ -15,7 +15,7 @@ class listGroups(object):
 
 map_position = SimpleVocabulary.fromItems([( 'No Map','nomap',), ( 'Position Top','top',),('Position Bottom','bottom',)])
 
-field_type = SimpleVocabulary.fromItems([( 'Text', 'search_text',), ('Number', 'search_number', ),('Date','search_date',),('Check','search_check',),('List (Dynamic Search)','search_list',),])
+field_type = SimpleVocabulary.fromItems([( 'Text', 'search_text',), ('Number', 'search_number', ),('Date','search_date',),('Check','search_check',),('Radio','search_radio',),('List (Dynamic Search)','search_list',),])
 yes_no = SimpleVocabulary.fromItems([('Yes',1),('No',0)])
 view_type = SimpleVocabulary.fromItems([('Text','text'),('Integer','integer'),('Float','float'),('Date','date')])
 users_groups_list = listGroups()
