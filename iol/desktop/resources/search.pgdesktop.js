@@ -14,6 +14,18 @@ $.fn.serializePGQuery = function() {
 	        query[this.name]['subname'] = info['subname'];			
         }
     });
+    /* Radios become arrays (Zope by default ORs them) */
+    $('#' + $(this).attr('id') + ' input[type=radio]:checked:not([name$="_op"]):not([name$="_searchtype"])').each(function(){
+        if($(this).attr('checked')){
+            info = $(this).data();
+	        query[this.name] = query[this.name] || {value:[],op:null,type:null,name:null,subname:null};
+            query[this.name]['value'].push(this.value);
+	        query[this.name]['op']=$("#" + this.name + "_op").val();
+	        query[this.name]['type']=$("#" + this.name + "_searchtype").val();
+	        query[this.name]['name'] = info['name'];
+	        query[this.name]['subname'] = info['subname'];
+        }
+    });
     /* Input */
     $('#' + $(this).attr('id') + ' input[type=text]:not([name$="_op"]):not([name$="_searchtype"])').each(function(){
         if($(this).val() && $(this).attr('name')){
