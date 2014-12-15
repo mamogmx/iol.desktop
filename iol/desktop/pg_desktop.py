@@ -41,14 +41,14 @@ class Ipg_desktop(form.Schema, IImageScaleTraversable):
     # models/pg_desktop.xml to define the content type.
 
     form.model("models/pg_desktop.xml")
-    @zope.interface.invariant
-    def isValidConnectionString(desktop):
-        try:
-            engine = sql.create_engine(desktop.conn_string)
-            connection = engine.connect()
-        except:
-            pass
-            raise zope.interface.Invalid("Not a valid connection string '%s'" %desktop.conn_string)
+    #@zope.interface.invariant
+    #def isValidConnectionString(desktop):
+    #    try:
+    #        engine = sql.create_engine(desktop.conn_string)
+    #        connection = engine.connect()
+    #    except:
+    #        pass
+    #        raise zope.interface.Invalid("Not a valid connection string '%s'" %desktop.conn_string)
 
 # Custom content-type class; objects created for this content type will
 # be instances of this class. Use this class to add content-type specific
@@ -60,6 +60,7 @@ class pg_desktop(Container):
     security = ClassSecurityInfo()
     # Add your class methods and properties here
     def __init__(self):
+        Container.__init__(self)
         manage_addCMFBTreeFolder(self, id='resources')
 
     def getFields(self):
