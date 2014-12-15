@@ -2,9 +2,7 @@ develop-eggs
 *egg-info
 *.pyc
 *.pyo
-src/gisweb.plominofieldextensions/
-src/gisweb.plominofields/
-src/gisweb.utils/
+*.egg
 var
 bin
 parts
