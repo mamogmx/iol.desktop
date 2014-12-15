@@ -4,7 +4,7 @@ $.fn.serializePGQuery = function() {
     var info;
     /* Checkboxes become arrays (Zope by default ORs them) */
     $('#' + $(this).attr('id') + ' input[type=checkbox]:checked:not([name$="_op"]):not([name$="_searchtype"])').each(function(){
-        if($(this).attr('checked')){
+        if($(this).attr('checked') && $(this).val()){
             info = $(this).data();
 	        query[this.name] = query[this.name] || {value:[],op:null,type:null,name:null,subname:null};
             query[this.name]['value'].push(this.value);
@@ -16,7 +16,7 @@ $.fn.serializePGQuery = function() {
     });
     /* Radios become arrays (Zope by default ORs them) */
     $('#' + $(this).attr('id') + ' input[type=radio]:checked:not([name$="_op"]):not([name$="_searchtype"])').each(function(){
-        if($(this).attr('checked')){
+        if($(this).attr('checked') && $(this).val()){
             info = $(this).data();
 	        query[this.name] = query[this.name] || {value:[],op:null,type:null,name:null,subname:null};
             query[this.name]['value'].push(this.value);
@@ -51,7 +51,6 @@ $.fn.serializePGQuery = function() {
         }
     });
     /*TODO SELECT FIELDS*/
-	console.log(query);
     return query;
 };
 $.extend( true, $.fn.dataTable.defaults, {    
