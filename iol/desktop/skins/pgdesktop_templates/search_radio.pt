@@ -2,11 +2,11 @@
     <div class="span12">
         <label class="control-label" tal:content="title"/>
         <div tal:repeat="chk values">
-            <tal:block tal:condition="repeat/chk/first">
+            <tal:block tal:condition="repeat/chk/start">
                 <input type="radio" tal:attributes="name string:${name};id string:${name}-${chk/value};value chk/value;data-name string:${fieldname};data-subname string:${subfieldname}" data-plugins="dynamicsearch" checked="checked">
                 <span tal:content="chk/label"/>
             </tal:block>
-            <tal:block tal:condition="not:repeat/chk/first">
+            <tal:block tal:condition="not:repeat/chk/start">
                 <input type="radio" tal:attributes="name string:${name};id string:${name}-${chk/value};value chk/value;data-name string:${fieldname};data-subname string:${subfieldname}" data-plugins="dynamicsearch">
                 <span tal:content="chk/label"/>
             </tal:block>
