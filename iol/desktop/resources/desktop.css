@@ -1,7 +1,14 @@
 #resultTable{
 }
+
+body {
+	margin-left:50px;
+	
+}
+
 div.desktop-container{
 	padding:30px;
+
 }
 
 .bootstrap-search{
