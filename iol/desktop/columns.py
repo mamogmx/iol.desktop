@@ -21,11 +21,14 @@ class dt_column(Item):
         if self.sClass:
             result['sClass'] = self.sClass
         if self.sDefaultContent:
-            result['sDefaultContent'] = self.sDefaultContent
+            result['sDefaultContent'] = self.sDefaultContent or ''
+        else:
+            result['sDefaultContent'] = ''
         if self.sWidth:
             result['sWidth'] = self.sWidth
         if self.mRender:
             result['mRender'] = self.mRender
+        result['order'] = self.order
         return result
 
 @grok.subscribe(dt_column, IObjectAddedEvent)
@@ -33,5 +36,5 @@ def moveObj(column, event):
     container = column.aq_parent
     api.content.move(
         source=column,
-        target=container['columns'],
+        target=container['dtcolumns'],
         safe_id=True)

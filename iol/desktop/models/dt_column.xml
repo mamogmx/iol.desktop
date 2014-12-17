@@ -11,7 +11,7 @@
     <field name="sTitle" type="zope.schema.TextLine">
       <title>Column Title</title>
       <description>Column Title</description>
-      <required>True</required>
+      <required>False</required>
     </field>
     <field name="sType" type="zope.schema.Choice">
       <title>Type</title>
@@ -30,7 +30,7 @@
     </field>
     <field name="sWidth" type="zope.schema.TextLine">
       <title>Width</title>
-      <description>Width %</description>
+      <description>Width (e.g. 20%)</description>
       <required>False</required>
     </field>
     <field name="bSortable" type="zope.schema.Choice">
@@ -46,11 +46,16 @@
       <required>True</required>
       <source>iol.desktop.vocabularies.yes_no</source>
     </field>
+	<field name="order" type="zope.schema.Int">
+      <title>Order</title>
+      <description>order</description>
+      <required>True</required>
+      <defaultFactory>iol.desktop.defaultFactory.dtorder</defaultFactory>
+    </field>
     <field name="mRender" type="zope.schema.TextLine">
       <title>Render Function</title>
       <description>Render Function</description>
       <required>False</required>
-
     </field>
   </schema>
 </model>

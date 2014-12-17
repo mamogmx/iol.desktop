@@ -12,7 +12,7 @@ import simplejson as json
 import sqlalchemy as sql
 import zope
 from Products.CMFCore.CMFBTreeFolder import manage_addCMFBTreeFolder
-
+import operator
 
 # Interface class; used to define content-type schema.
 
@@ -42,7 +42,7 @@ class pg_desktop(Container):
     def __init__(self):
         Container.__init__(self)
         manage_addCMFBTreeFolder(self, id='resources')
-        manage_addCMFBTreeFolder(self, id='columns')
+        manage_addCMFBTreeFolder(self, id='dtcolumns')
 
 
     def loadResources(self):
@@ -99,10 +99,11 @@ class pg_desktop(Container):
     def getDTColumns(self):
         results = []
 
-        if self['columns'].keys():
-            for i in self['columns'].items():
+        if self['dtcolumns'].keys():
+            for i in self['dtcolumns'].items():
                 cols = i[1].to_dict()
                 results.append(cols)
+                results.sort(key=operator.itemgetter('order'))
         else:
             from zope.globalrequest import getRequest
             request = getRequest()
@@ -150,6 +151,12 @@ class pg_desktop(Container):
         m = re.findall('"mRender": "([A-z0-9_]+)"', columns)
         for r in m:
             columns = columns.replace('"mRender": "%s"' % r,'"mRender": %s' % r)
+        m = re.findall('"bVisible": "([A-z]+)"', columns)
+        for r in m:
+            columns = columns.replace('"bVisible": "%s"' % r,'"bVisible": %s' % r)
+        m = re.findall('"bSortable": "([A-z]+)"', columns)
+        for r in m:
+            columns = columns.replace('"bSortable": "%s"' % r,'"bSortable": %s' % r)
         html = pt.pt_render(extra_context=dict(cols=columns))
         html_content = html_content.replace(dtblock, html)
 
