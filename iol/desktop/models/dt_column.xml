@@ -11,7 +11,7 @@
     <field name="sTitle" type="zope.schema.TextLine">
       <title>Column Title</title>
       <description>Column Title</description>
-      <required>True</required>
+      <required>False</required>
     </field>
     <field name="sType" type="zope.schema.Choice">
       <title>Type</title>
