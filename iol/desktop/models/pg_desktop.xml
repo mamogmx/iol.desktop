@@ -7,6 +7,7 @@
             <description/>
             <title>Javascript Settings for DataTable</title>
             <required>False</required>
+			<default>iDisplayLength : 10,</default>
          </field>
          <field name="html_slot" type="plone.app.textfield.RichText">
             <description/>

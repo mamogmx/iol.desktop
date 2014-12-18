@@ -77,7 +77,7 @@ $.extend( true, $.fn.dataTable.defaults, {
 });
 
 function linkIstanza(data,type,full){
-	return '<i class="icon-search linkable" data-plugins="gotoIstanza" data-url="/' + full['plominodb'] + '/' + full['id'] + '"></i>';
+	return '<i class="icon-search linkable" data-plugins="gotoIstanza" data-url="' + full['object_url'] + '"></i>';
 }
 
 $(document).ready(function(){
