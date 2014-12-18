@@ -3,7 +3,11 @@
        xmlns:form="http://namespaces.plone.org/supermodel/form">
     
     <schema>
-
+		<field name="js_settings" type="zope.schema.Text">
+            <description/>
+            <title>Javascript Settings for DataTable</title>
+            <required>False</required>
+         </field>
          <field name="html_slot" type="plone.app.textfield.RichText">
             <description/>
             <title>Page Definition</title>

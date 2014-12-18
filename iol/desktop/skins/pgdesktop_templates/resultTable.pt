@@ -1,5 +1,5 @@
 <table class="table table-striped table-bordered dataTable" id="resultTable"></table>
-<script type="text/javascript" tal:define="aoColumns cols"
+<script type="text/javascript" tal:define="aoColumns cols;jssettings js"
     tal:content="string:
         var table = jQuery('#resultTable').dataTable({
             bDeferRender: true,
@@ -8,6 +8,7 @@
             bServerSide: true,
             sAjaxSource: 'pgsearch',
             sServerMethod: 'POST',
+			${jssettings}
             aoColumns: ${aoColumns}
         });
 "></script>

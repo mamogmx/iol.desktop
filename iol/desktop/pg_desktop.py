@@ -137,6 +137,7 @@ class pg_desktop(Container):
         cols = self.getDTColumns()
 
         html_content = self.html_slot.raw
+        jssettings = self.js_settings or ''
 
         for fld in fields:
             fieldblock = '<span class="desktopField">%s</span>' % fld['name']
@@ -157,7 +158,7 @@ class pg_desktop(Container):
         m = re.findall('"bSortable": "([A-z]+)"', columns)
         for r in m:
             columns = columns.replace('"bSortable": "%s"' % r,'"bSortable": %s' % r)
-        html = pt.pt_render(extra_context=dict(cols=columns))
+        html = pt.pt_render(extra_context=dict(cols=columns,js=jssettings))
         html_content = html_content.replace(dtblock, html)
 
         if self.desktop_with_map != 'nomap' and self.map_name:

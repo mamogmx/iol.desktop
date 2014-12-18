@@ -51,7 +51,6 @@ $.fn.serializePGQuery = function() {
         }
     });
     /*TODO SELECT FIELDS*/
-	console.log(query);
     return query;
 };
 $.extend( true, $.fn.dataTable.defaults, {    
