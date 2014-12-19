@@ -82,7 +82,7 @@ function linkIstanza(data,type,full){
         url = full['object_url']
     else{
         if (!location.port && full['object_path']) full['object_path'].pop();
-        url = '/' + '/'.join(full['object_path']);
+        url = '/' + full['object_path'].join('/');
     }
 	return '<i class="icon-search linkable" data-plugins="gotoIstanza" data-url="' + url + '"></i>';
 }
