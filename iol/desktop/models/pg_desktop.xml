@@ -17,9 +17,11 @@
          </field>
 
         <fieldset name="db_settings" label="Database Settings" description="Database Settings (connection string,schema and table)">
-			<field name="conn_string" type="zope.schema.TextLine">
-				<description/>
+			<field name="conn_string" type="zope.schema.TextLine"
+				   form:validator="iol.desktop.validators.validateConn">
+				<description>Database DSN (e.g. postgres://user:password@host:port/dbname)</description>
 				<title>Connection String</title>
+
 			</field>
 			<field name="db_schema" type="zope.schema.TextLine">
 				<description/>
