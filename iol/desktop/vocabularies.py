@@ -8,7 +8,7 @@ class listGroups(object):
     def __call__(self,context):
         acl_users = getToolByName(context, 'acl_users')
         group_list = acl_users.source_groups.getGroups()
-        terms = [SimpleVocabulary.createTerm('Authenticated Users', 'Authenticated Users', 'Authenticated Users')]
+        terms = [SimpleVocabulary.createTerm('AuthenticatedUsers', 'AuthenticatedUsers', 'Authenticated Users')]
         for group in group_list:
             terms.append(SimpleVocabulary.createTerm(group.getName(), group.getName() ,group.title or  group.getName()))
         return SimpleVocabulary(terms)

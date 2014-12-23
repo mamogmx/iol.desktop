@@ -57,7 +57,7 @@ class pgsearch(BrowserView):
         condition = None
         prms = json.loads(request.get('query','{}'))
         if 'Manager' in roles:
-            condit = 1
+            condition = 1
         else:
             for grp in desktop_manager:
                 if grp in groups:
@@ -73,15 +73,15 @@ class pgsearch(BrowserView):
                 for grp in desktop_reviewer:
                     if grp in groups:
                         prms['iol_reviewer']=dict(
-                        op='intersect',
-                        name='iol_reviewer',
-                        subname='',
-                        value= groups + [current.id],
-                        type='text'
-                    )
+                            op='intersect',
+                            name='iol_reviewer',
+                            subname='',
+                            value= groups + [current.id],
+                            type='text'
+                        )
                         condition = 1
                 if not condition:
-                    for grp in desktop_reviewer:
+                    for grp in desktop_owner:
                         if grp in groups:
                             prms['iol_owner']=dict(
                                 op='intersect',
@@ -90,6 +90,10 @@ class pgsearch(BrowserView):
                                 value= groups + [current.id],
                                 type='text'
                             )
+                            condition = 1
+
+        if not condition:
+            return result
         request.set('query',prms)
         engine = sql.create_engine(desktop.conn_string)
         connection = engine.connect()
