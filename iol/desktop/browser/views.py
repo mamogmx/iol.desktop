@@ -122,7 +122,7 @@ class pgsearch(BrowserView):
             data['object_url'] = r['url']
             data['object_path'] = r['path']
             result['aaData'].append(data)
-        
+            result['query'] = query
         result['iTotalDisplayRecords'] = totali
 
         return result

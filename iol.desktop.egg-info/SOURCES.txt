@@ -14,6 +14,7 @@ iol.desktop.egg-info/top_level.txt
 iol/desktop/__init__.py
 iol/desktop/columns.py
 iol/desktop/datatables.py
+iol/desktop/defaultFactory.py
 iol/desktop/gmap_vocabularies.py
 iol/desktop/interfaces.py
 iol/desktop/maps.py
@@ -21,6 +22,7 @@ iol/desktop/pg_desktop.py
 iol/desktop/pg_search_field.py
 iol/desktop/tests.py
 iol/desktop/upgrades.py
+iol/desktop/validators.py
 iol/desktop/vocabularies.py
 iol/desktop/browser/__init__.py
 iol/desktop/browser/views.py
