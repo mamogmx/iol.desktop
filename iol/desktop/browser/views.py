@@ -49,6 +49,7 @@ class pgsearch(BrowserView):
         
         result = {'aaData': list(), 'sEcho': request.get('sEcho',0), 'iTotalRecords': 0, 'iTotalDisplayRecords': 0, 'error':''}
         if api.user.is_anonymous():
+            result['message'] = 'Anonymous User'
             return result
         current = api.user.get_current()
         roles = api.user.get_roles(username=current.id)
@@ -93,6 +94,7 @@ class pgsearch(BrowserView):
                             condition = 1
 
         if not condition:
+            result['message'] = 'User not in groups'
             return result
         request.set('query',prms)
         engine = sql.create_engine(desktop.conn_string)
