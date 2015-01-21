@@ -81,7 +81,7 @@ function linkIstanza(data,type,full){
     if (!('object_path' in full))
         url = full['object_url']
     else{
-        if (!location.port && full['object_path']) full['object_path'].pop();
+        if (!location.port && full['object_path']) full['object_path'].shift();
         url = '/' + full['object_path'].join('/');
     }
 	return '<i class="icon-search linkable" data-plugins="gotoIstanza" data-url="' + url + '"></i>';
