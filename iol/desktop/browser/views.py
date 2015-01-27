@@ -26,8 +26,11 @@ def transformDate(obj):
     res = dict()
     for k,v in obj.iteritems():
         try:
-            d = parse(v,ignoretz=True).strftime('%d/%m/%Y')
-            obj[k] = d
+            if len(v) == 8:
+                obj[k] = v
+            else:
+                d = parse(v,ignoretz=True).strftime('%d/%m/%Y')
+                obj[k] = d
         except:
             obj[k] = v  
     return obj   
