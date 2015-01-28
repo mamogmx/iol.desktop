@@ -81,8 +81,10 @@ function linkIstanza(data,type,full){
     if (!('object_path' in full))
         url = full['object_url']
     else{
-        if (!location.port && full['object_path']) full['object_path'].shift();
-        url = '/' + full['object_path'].join('/');
+        if (!location.port && full['object_path']!=null  && $.isArray(full['object_path']) && full['object_path'].length > 1) full['object_path'].shift();
+        if (full['object_path'] && $.isArray(full['object.path'])) url = '/' + full['object_path'].join('/');
+	else
+	    url="/" + full['plominodb'] + "/" + full['id'];
     }
 	return '<i class="icon-search linkable" data-plugins="gotoIstanza" data-url="' + url + '"></i>';
 }
