@@ -81,10 +81,25 @@ function linkIstanza(data,type,full){
     if (!('object_path' in full))
         url = full['object_url']
     else{
-        if (!location.port && full['object_path']!=null  && $.isArray(full['object_path']) && full['object_path'].length > 1) full['object_path'].shift();
-        if (full['object_path'] && $.isArray(full['object.path'])) url = '/' + full['object_path'].join('/');
-	else
-	    url="/" + full['plominodb'] + "/" + full['id'];
+    	if (location.port){
+    		if (full['object_path']!=null  && $.isArray(full['object_path']) && full['object_path'].length > 1){
+    			url = '/' + full['object_path'].join('/');
+    		}
+    		else{
+    			var pathArray = window.location.pathname.split( '/' );
+    			var portal_name = pathArray[0];
+    			url="/" + portal_name + "/" + full['plominodb'] + "/" + full['id'];
+    		}
+    	}
+    	else{
+    		if (full['object_path']!=null  && $.isArray(full['object_path']) && full['object_path'].length > 1){
+    			full['object_path'].shift();
+    			url = '/' + full['object_path'].join('/');
+    		}
+    		else{
+    			url="/" + full['plominodb'] + "/" + full['id'];
+    		}
+    	}
     }
 	return '<i class="icon-search linkable" data-plugins="gotoIstanza" data-url="' + url + '"></i>';
 }
