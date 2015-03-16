@@ -13,11 +13,20 @@ def update_groups(setup):
     for brain in brains:
         desk = brain.getObject()
         if isinstance(desk.owner_groups,basestring):
-            owner = desk.owner_groups.split(',') or []
+            if desk.owner_groups:
+                owner = desk.owner_groups.split(',') or []
+            else:
+                owner = []
             desk.owner_groups = owner
         if isinstance(desk.reviewer_groups,basestring):
-            reviewer = desk.reviewer_groups.split(',') or []
+            if desk.reviewer_groups:
+                reviewer = desk.reviewer_groups.split(',') or []
+            else:
+                reviewer = []
             desk.reviewer_groups_groups = reviewer
         if isinstance(desk.manager_groups,basestring):
-            manager = desk.manager_groups.split(',') or []
+            if desk.manager_groups:
+                manager = desk.manager_groups.split(',') or []
+            else:
+                manager = []
             desk.manager_groups = manager

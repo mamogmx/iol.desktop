@@ -70,7 +70,10 @@ class pg_desktop(Container):
             i = brain.getObject()
             try:
                 v = list()
-                lst = i.search_val.split(',')
+                if i.search_val:
+                    lst = i.search_val.split(',')
+                else:
+                    lst = []
                 for l in lst:
                     (val, lbl) = l.split('|')
                     v.append(dict(label=lbl, value=val))
